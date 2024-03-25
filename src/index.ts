@@ -12,12 +12,12 @@
  * limitations under the License.
  */
 
-import { registerOverlay } from 'klinecharts'
+import { registerOverlay } from 'tradingsoccerlib'
 
 import overlays from './extension'
 
 import DefaultDatafeed from './DefaultDatafeed'
-import KLineChartPro from './KLineChartPro'
+import TradingSoccerWrap from './TradingSoccerWrap'
 
 import { load } from './i18n'
 
@@ -29,7 +29,7 @@ overlays.forEach(o => { registerOverlay(o) })
 
 export {
   DefaultDatafeed,
-  KLineChartPro,
+  TradingSoccerWrap,
   load as loadLocales
 }
 

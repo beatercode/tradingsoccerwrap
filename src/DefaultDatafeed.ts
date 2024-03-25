@@ -12,13 +12,13 @@
  * limitations under the License.
  */
 
-import { KLineData } from 'klinecharts'
+import { KLineData } from 'tradingsoccerlib'
 
 import { Datafeed, SymbolInfo, Period, DatafeedSubscribeCallback } from './types'
 
 
 export default class DefaultDatafeed implements Datafeed {
-  constructor (apiKey: string) {
+  constructor(apiKey: string) {
     this._apiKey = apiKey
   }
 
@@ -28,7 +28,7 @@ export default class DefaultDatafeed implements Datafeed {
 
   private _ws?: WebSocket
 
-  async searchSymbols (search?: string): Promise<SymbolInfo[]> {
+  async searchSymbols(search?: string): Promise<SymbolInfo[]> {
     const response = await fetch(`https://api.polygon.io/v3/reference/tickers?apiKey=${this._apiKey}&active=true&search=${search ?? ''}`)
     const result = await response.json()
     return await (result.results || []).map((data: any) => ({
@@ -43,7 +43,7 @@ export default class DefaultDatafeed implements Datafeed {
     }))
   }
 
-  async getHistoryKLineData (symbol: SymbolInfo, period: Period, from: number, to: number): Promise<KLineData[]> {
+  async getHistoryKLineData(symbol: SymbolInfo, period: Period, from: number, to: number): Promise<KLineData[]> {
     const response = await fetch(`https://api.polygon.io/v2/aggs/ticker/${symbol.ticker}/range/${period.multiplier}/${period.timespan}/${from}/${to}?apiKey=${this._apiKey}`)
     const result = await response.json()
     return await (result.results || []).map((data: any) => ({
@@ -57,7 +57,7 @@ export default class DefaultDatafeed implements Datafeed {
     }))
   }
 
-  subscribe (symbol: SymbolInfo, period: Period, callback: DatafeedSubscribeCallback): void {
+  subscribe(symbol: SymbolInfo, period: Period, callback: DatafeedSubscribeCallback): void {
     if (this._prevSymbolMarket !== symbol.market) {
       this._ws?.close()
       this._ws = new WebSocket(`wss://delayed.polygon.io/${symbol.market}`)
@@ -68,7 +68,7 @@ export default class DefaultDatafeed implements Datafeed {
         const result = JSON.parse(event.data)
         if (result[0].ev === 'status') {
           if (result[0].status === 'auth_success') {
-            this._ws?.send(JSON.stringify({ action: 'subscribe', params: `T.${symbol.ticker}`}))
+            this._ws?.send(JSON.stringify({ action: 'subscribe', params: `T.${symbol.ticker}` }))
           }
         } else {
           if ('sym' in result) {
@@ -85,7 +85,7 @@ export default class DefaultDatafeed implements Datafeed {
         }
       }
     } else {
-      this._ws?.send(JSON.stringify({ action: 'subscribe', params: `T.${symbol.ticker}`}))
+      this._ws?.send(JSON.stringify({ action: 'subscribe', params: `T.${symbol.ticker}` }))
     }
     this._prevSymbolMarket = symbol.market
   }

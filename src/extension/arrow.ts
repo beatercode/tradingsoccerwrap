@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-import { OverlayTemplate, utils } from 'klinecharts'
+import { OverlayTemplate, utils } from 'tradingsoccerlib'
 
 import { getRotateCoordinate } from './utils'
 

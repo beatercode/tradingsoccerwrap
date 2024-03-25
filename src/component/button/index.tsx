@@ -12,26 +12,23 @@
  * limitations under the License.
  */
 
-import { ParentComponent, ParentProps, JSX } from 'solid-js'
+import { ParentComponent, ParentProps, JSX } from "solid-js";
 
-export type ButtonType = 'confirm' | 'cancel'
+export type ButtonType = "confirm" | "cancel";
 
 export interface ButtonProps extends ParentProps {
-  class?: string
-  style?: JSX.CSSProperties | string
-  type?: ButtonType
-  onClick?: () => void
+  class?: string;
+  style?: JSX.CSSProperties | string;
+  type?: ButtonType;
+  onClick?: () => void;
 }
 
-const Button: ParentComponent<ButtonProps> = props => {
+const Button: ParentComponent<ButtonProps> = (props) => {
   return (
-    <button
-      style={props.style}
-      class={`klinecharts-pro-button ${props.type ?? 'confirm'} ${props.class?? ''}`}
-      onClick={props.onClick}>
+    <button style={props.style} class={`tradingsoccerwrap-button ${props.type ?? "confirm"} ${props.class ?? ""}`} onClick={props.onClick}>
       {props.children}
     </button>
-  )
-}
+  );
+};
 
-export default Button
+export default Button;

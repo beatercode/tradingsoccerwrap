@@ -4,27 +4,27 @@
 @import './iconfonts/style.css';
 
 .@{prefix-cls} {
-  --klinecharts-pro-primary-color: @c-primary;
-  --klinecharts-pro-hover-background-color: @c-hover-background-light;
-  --klinecharts-pro-background-color: @c-background-light;
-  --klinecharts-pro-popover-background-color: @c-popover-background-light;
-  --klinecharts-pro-text-color: @c-text-light;
-  --klinecharts-pro-text-second-color: @c-text-second-light;
-  --klinecharts-pro-border-color: @c-border-light;
-  --klinecharts-pro-selected-color: fade(@c-primary, 15%);
+  --tradingsoccerwrap-primary-color: @c-primary;
+  --tradingsoccerwrap-hover-background-color: @c-hover-background-light;
+  --tradingsoccerwrap-background-color: @c-background-light;
+  --tradingsoccerwrap-popover-background-color: @c-popover-background-light;
+  --tradingsoccerwrap-text-color: @c-text-light;
+  --tradingsoccerwrap-text-second-color: @c-text-second-light;
+  --tradingsoccerwrap-border-color: @c-border-light;
+  --tradingsoccerwrap-selected-color: fade(@c-primary, 15%);
   &[data-theme="dark"] {
-    --klinecharts-pro-hover-background-color: @c-hover-background-dark;
-    --klinecharts-pro-background-color: @c-background-dark;
-    --klinecharts-pro-popover-background-color: @c-popover-background-dark;
-    --klinecharts-pro-text-color: @c-text-dark;
-    --klinecharts-pro-text-second-color: @c-text-second-dark;
-    --klinecharts-pro-border-color: @c-border-dark;
+    --tradingsoccerwrap-hover-background-color: @c-hover-background-dark;
+    --tradingsoccerwrap-background-color: @c-background-dark;
+    --tradingsoccerwrap-popover-background-color: @c-popover-background-dark;
+    --tradingsoccerwrap-text-color: @c-text-dark;
+    --tradingsoccerwrap-text-second-color: @c-text-second-dark;
+    --tradingsoccerwrap-border-color: @c-border-dark;
   }
   position: relative;
   display: flex;
   flex-direction: column;
-  color: var(--klinecharts-pro-text-color);
-  background-color: var(--klinecharts-pro-background-color);
+  color: var(--tradingsoccerwrap-text-color);
+  background-color: var(--tradingsoccerwrap-background-color);
   font-size: 14px;
   height: 80vh;
   &-watermark {
@@ -36,7 +36,7 @@
     .logo {
       width: 160px;
       height: 184px;
-      fill: var(--klinecharts-pro-border-color);
+      fill: var(--tradingsoccerwrap-border-color);
     }
   }
   &-price-unit {
@@ -52,10 +52,10 @@
     font-size: 10px;
     font-weight: bold;
     padding: 1px 4px;
-    color: var(--klinecharts-pro-text-second-color);
+    color: var(--tradingsoccerwrap-text-second-color);
     box-shadow: 0 3px 3px 0 rgba(50, 50, 50, .3);
-    border: solid 1px var(--klinecharts-pro-border-color);
-    background-color: var(--klinecharts-pro-background-color);
+    border: solid 1px var(--tradingsoccerwrap-border-color);
+    background-color: var(--tradingsoccerwrap-background-color);
   }
   &-load-icon {
     position: absolute;

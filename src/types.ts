@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-import { KLineData, Styles, DeepPartial } from 'klinecharts'
+import { KLineData, Styles, DeepPartial } from 'tradingsoccerlib'
 
 export interface SymbolInfo {
   ticker: string
@@ -36,10 +36,10 @@ export interface Period {
 export type DatafeedSubscribeCallback = (data: KLineData) => void
 
 export interface Datafeed {
-  searchSymbols (search?: string): Promise<SymbolInfo[]>
-  getHistoryKLineData (symbol: SymbolInfo, period: Period, from: number, to: number): Promise<KLineData[]>
-  subscribe (symbol: SymbolInfo, period: Period, callback: DatafeedSubscribeCallback): void
-  unsubscribe (symbol: SymbolInfo, period: Period): void
+  searchSymbols(search?: string): Promise<SymbolInfo[]>
+  getHistoryKLineData(symbol: SymbolInfo, period: Period, from: number, to: number): Promise<KLineData[]>
+  subscribe(symbol: SymbolInfo, period: Period, callback: DatafeedSubscribeCallback): void
+  unsubscribe(symbol: SymbolInfo, period: Period): void
 }
 
 export interface ChartProOptions {

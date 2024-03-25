@@ -12,15 +12,15 @@
  * limitations under the License.
  */
 
-import { Coordinate, Bounding, LineAttrs, utils } from 'klinecharts'
+import { Coordinate, Bounding, LineAttrs, utils } from 'tradingsoccerlib'
 
-export function getRotateCoordinate (coordinate: Coordinate, targetCoordinate: Coordinate, angle: number): Coordinate {
+export function getRotateCoordinate(coordinate: Coordinate, targetCoordinate: Coordinate, angle: number): Coordinate {
   const x = (coordinate.x - targetCoordinate.x) * Math.cos(angle) - (coordinate.y - targetCoordinate.y) * Math.sin(angle) + targetCoordinate.x
   const y = (coordinate.x - targetCoordinate.x) * Math.sin(angle) + (coordinate.y - targetCoordinate.y) * Math.cos(angle) + targetCoordinate.y
   return { x, y }
 }
 
-export function getRayLine (coordinates: Coordinate[], bounding: Bounding): LineAttrs | LineAttrs[] {
+export function getRayLine(coordinates: Coordinate[], bounding: Bounding): LineAttrs | LineAttrs[] {
   if (coordinates.length > 1) {
     let coordinate: Coordinate
     if (coordinates[0].x === coordinates[1].x && coordinates[0].y !== coordinates[1].y) {
@@ -51,7 +51,7 @@ export function getRayLine (coordinates: Coordinate[], bounding: Bounding): Line
   return []
 }
 
-export function getDistance (coordinate1: Coordinate, coordinate2: Coordinate,): number {
+export function getDistance(coordinate1: Coordinate, coordinate2: Coordinate,): number {
   const xDis = Math.abs(coordinate1.x - coordinate2.x)
   const yDis = Math.abs(coordinate1.y - coordinate2.y)
   return Math.sqrt(xDis * xDis + yDis * yDis)

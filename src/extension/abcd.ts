@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-import { OverlayTemplate, Coordinate } from 'klinecharts'
+import { OverlayTemplate, Coordinate } from 'tradingsoccerlib'
 
 const abcd: OverlayTemplate = {
   name: 'abcd',
@@ -23,7 +23,7 @@ const abcd: OverlayTemplate = {
   createPointFigures: ({ coordinates }) => {
     let acLineCoordinates: Coordinate[] = []
     let bdLineCoordinates: Coordinate[] = []
-   
+
     const tags = ['A', 'B', 'C', 'D']
     const texts = coordinates.map((coordinate, i) => ({
       ...coordinate,

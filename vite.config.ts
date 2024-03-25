@@ -9,27 +9,27 @@ export default defineConfig({
     cssTarget: 'chrome61',
     sourcemap: true,
     rollupOptions: {
-      external: ['klinecharts'],
+      external: ['tradingsoccerlib'],
       output: {
         assetFileNames: (chunkInfo) => {
           if (chunkInfo.name === 'style.css') {
-            return 'klinecharts-pro.css'
+            return 'tradingsoccerwrap.css'
           }
         },
         globals: {
-          klinecharts: 'klinecharts'
+          tradingsoccerlib: 'tradingsoccerlib'
         },
       },
     },
     lib: {
       entry: './src/index.ts',
-      name: 'klinechartspro',
+      name: 'tradingsoccerwrap',
       fileName: (format) => {
         if (format === 'es') {
-          return 'klinecharts-pro.js'
+          return 'tradingsoccerwrap.js'
         }
         if (format === 'umd') {
-          return 'klinecharts-pro.umd.js'
+          return 'tradingsoccerwrap.umd.js'
         }
       }
     }
