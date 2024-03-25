@@ -1,10 +1,10 @@
 {
-  "name": "@klinecharts/pro",
-  "version": "0.1.1",
-  "description": "Financial chart built out of the box based on KLineChart.",
+  "name": "tradingsoccerwrap",
+  "version": "0.1.2",
+  "description": "tradingsoccerwrap",
   "type": "module",
-  "main": "./dist/klinecharts-pro.umd.js",
-  "module": "./dist/klinecharts-pro.js",
+  "main": "./dist/tradingsoccerwrap.umd.js",
+  "module": "./dist/tradingsoccerwrap.js",
   "types": "./dist/index.d.ts",
   "files": [
     "LICENSE",
@@ -13,10 +13,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/klinecharts/pro"
+    "url": "https://github.com/beatercode/tradingsoccerwrap"
   },
   "keywords": [
-    "klinecharts",
+    "tradingsoccer",
+    "tradingsoccerlib",
+    "tradingsoccerwrap",
     "pro",
     "candlestick",
     "finance",
@@ -24,17 +26,15 @@
     "chart",
     "canvas"
   ],
-  "author": "liihuu",
+  "author": "beatercode",
   "license": "Apache-2.0",
   "private": false,
   "scripts": {
     "build-core": "tsc && vite build",
-    "build-dts": "dts-bundle-generator --no-banner true --umd-module-name klinechartspro -o dist/index.d.ts src/index.ts",
-    "build": "npm run build-core && npm run build-dts",
-    "docs:dev": "vitepress dev docs",
-    "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs",
-    "docs:deploy": "npm run docs:build && gh-pages -d website"
+    "build-dts": "dts-bundle-generator --no-banner true --umd-module-name tradingsoccerwrap -o dist/index.d.ts src/index.ts",
+    "build": "bun run build-core && bun run build-dts",
+    "dist:build": "bun run build && npm version patch --force && git add . && git commit -m 'bump version' && git push",
+    "dist": "npm version patch --force && git add . && git commit -m 'bump version' && git push"
   },
   "devDependencies": {
     "@solidjs/testing-library": "^0.6.0",
@@ -49,7 +49,6 @@
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-n": "^15.6.1",
     "eslint-plugin-promise": "^6.1.1",
-    "gh-pages": "^5.0.0",
     "less": "^4.1.3",
     "less-loader": "^11.1.0",
     "typescript": "^4.9.5",
@@ -63,6 +62,6 @@
     "solid-js": "^1.6.11"
   },
   "peerDependencies": {
-    "klinecharts": ">=9.0.0"
+    "tradingsoccerlib": "*0.1.5"
   }
 }
