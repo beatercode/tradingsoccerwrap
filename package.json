@@ -1,6 +1,6 @@
 {
   "name": "tradingsoccerwrap",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "tradingsoccerwrap",
   "type": "module",
   "main": "./dist/tradingsoccerwrap.umd.js",
