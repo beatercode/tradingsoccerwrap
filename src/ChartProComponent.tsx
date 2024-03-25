@@ -294,7 +294,7 @@ const ChartProComponent: Component<ChartProComponentProps> = (props) => {
         const [to] = adjustFromTo(p, timestamp!, 1);
         const [from] = adjustFromTo(p, to, 500);
         const kLineDataList = await props.datafeed.getHistoryKLineData(symbol(), p, from, to);
-        widget?.applyMoreData(kLineDataList, kLineDataList.length > 0);
+        // widget?.applyMoreData(kLineDataList, kLineDataList.length > 0);
         loading = false;
       };
       get();
