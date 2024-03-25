@@ -290,6 +290,7 @@ const ChartProComponent: Component<ChartProComponentProps> = (props) => {
       loading = true;
       const get = async () => {
         const p = period();
+        console.log("timestamp", timestamp);
         const [to] = adjustFromTo(p, timestamp!, 1);
         const [from] = adjustFromTo(p, to, 500);
         const kLineDataList = await props.datafeed.getHistoryKLineData(symbol(), p, from, to);

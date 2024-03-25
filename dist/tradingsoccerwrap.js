@@ -3631,7 +3631,9 @@ const Cu = (e) => {
       v && (m[g] = v);
     }), $(m), n == null || n.loadMore((g) => {
       a = !0, (async () => {
-        const _ = b(), [O] = y1(_, g, 1), [n1] = y1(_, O, 500), G = await e.datafeed.getHistoryKLineData(f(), _, n1, O);
+        const _ = b();
+        console.log("timestamp", g);
+        const [O] = y1(_, g, 1), [n1] = y1(_, O, 500), G = await e.datafeed.getHistoryKLineData(f(), _, n1, O);
         n == null || n.applyMoreData(G, G.length > 0), a = !1;
       })();
     }), n == null || n.subscribeAction(m5.OnTooltipIconClick, (g) => {
