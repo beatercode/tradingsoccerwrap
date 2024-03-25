@@ -155,6 +155,11 @@ const ChartProComponent: Component<ChartProComponentProps> = (props) => {
     let to = toTimestamp;
     let from = to;
     switch (period.timespan) {
+      case "second": {
+        to = to - (to % 1000);
+        from = to - count * period.multiplier * 1000;
+        break;
+      }
       case "minute": {
         to = to - (to % (60 * 1000));
         from = to - count * period.multiplier * 60 * 1000;
@@ -210,6 +215,12 @@ const ChartProComponent: Component<ChartProComponentProps> = (props) => {
         formatDate: (dateTimeFormat: Intl.DateTimeFormat, timestamp, format: string, type: FormatDateType) => {
           const p = period();
           switch (p.timespan) {
+            case "second": {
+              if (type === FormatDateType.XAxis) {
+                return utils.formatDate(dateTimeFormat, timestamp, "HH:mm:ss");
+              }
+              return utils.formatDate(dateTimeFormat, timestamp, "YYYY-MM-DD HH:mm:ss");
+            }
             case "minute": {
               if (type === FormatDateType.XAxis) {
                 return utils.formatDate(dateTimeFormat, timestamp, "HH:mm");

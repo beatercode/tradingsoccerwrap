@@ -1,8 +1,8 @@
 var f5 = Object.defineProperty;
 var g5 = (e, t, n) => t in e ? f5(e, t, { enumerable: !0, configurable: !0, writable: !0, value: n }) : e[t] = n;
 var h1 = (e, t, n) => (g5(e, typeof t != "symbol" ? t + "" : t, n), n);
-import { utils as E, init as y5, FormatDateType as K1, DomPosition as K0, ActionType as m5, dispose as h5, TooltipIconPosition as j1, registerOverlay as d5 } from "tradingsoccerlib";
-function D1(e, t, n) {
+import { utils as I, init as y5, FormatDateType as I1, DomPosition as K0, ActionType as m5, dispose as h5, TooltipIconPosition as j1, registerOverlay as d5 } from "tradingsoccerlib";
+function P1(e, t, n) {
   const r = (e.x - t.x) * Math.cos(n) - (e.y - t.y) * Math.sin(n) + t.x, a = (e.x - t.x) * Math.sin(n) + (e.y - t.y) * Math.cos(n) + t.y;
   return { x: r, y: a };
 }
@@ -17,10 +17,10 @@ function m0(e, t) {
       y: 0
     } : e[0].x > e[1].x ? n = {
       x: 0,
-      y: E.getLinearYFromCoordinates(e[0], e[1], { x: 0, y: e[0].y })
+      y: I.getLinearYFromCoordinates(e[0], e[1], { x: 0, y: e[0].y })
     } : n = {
       x: t.width,
-      y: E.getLinearYFromCoordinates(e[0], e[1], { x: t.width, y: e[0].y })
+      y: I.getLinearYFromCoordinates(e[0], e[1], { x: t.width, y: e[0].y })
     }, { coordinates: [e[0], n] };
   }
   return [];
@@ -37,10 +37,10 @@ const p5 = {
   needDefaultYAxisFigure: !0,
   createPointFigures: ({ coordinates: e }) => {
     if (e.length > 1) {
-      const t = e[1].x > e[0].x ? 0 : 1, n = E.getLinearSlopeIntercept(e[0], e[1]);
+      const t = e[1].x > e[0].x ? 0 : 1, n = I.getLinearSlopeIntercept(e[0], e[1]);
       let r;
       n ? r = Math.atan(n[0]) + Math.PI * t : e[1].y > e[0].y ? r = Math.PI / 2 : r = Math.PI / 2 * 3;
-      const a = D1({ x: e[1].x - 8, y: e[1].y + 4 }, e[1], r), s = D1({ x: e[1].x - 8, y: e[1].y - 4 }, e[1], r);
+      const a = P1({ x: e[1].x - 8, y: e[1].y + 4 }, e[1], r), s = P1({ x: e[1].x - 8, y: e[1].y - 4 }, e[1], r);
       return [
         {
           type: "line",
@@ -234,14 +234,14 @@ const p5 = {
   needDefaultYAxisFigure: !0,
   createPointFigures: ({ coordinates: e, bounding: t }) => {
     if (e.length > 1) {
-      const n = A9(e[0], e[1]) / Math.sqrt(24), r = e[1].x > e[0].x ? 0 : 1, a = E.getLinearSlopeIntercept(e[0], e[1]);
+      const n = A9(e[0], e[1]) / Math.sqrt(24), r = e[1].x > e[0].x ? 0 : 1, a = I.getLinearSlopeIntercept(e[0], e[1]);
       let s;
       a ? s = Math.atan(a[0]) + Math.PI * r : e[1].y > e[0].y ? s = Math.PI / 2 : s = Math.PI / 2 * 3;
-      const o = D1(
+      const o = P1(
         { x: e[0].x - n, y: e[0].y },
         e[0],
         s
-      ), i = D1(
+      ), i = P1(
         { x: e[0].x - n, y: e[0].y - n },
         e[0],
         s
@@ -278,7 +278,7 @@ const p5 = {
             break;
           }
         }
-        const k = b + Math.PI / 2, Z = D1({ x: C, y: l }, e[0], s);
+        const k = b + Math.PI / 2, Z = P1({ x: C, y: l }, e[0], s);
         c.push({
           ...Z,
           r: p,
@@ -686,19 +686,19 @@ const i1 = 1, Y1 = 2, w9 = {
   owner: null
 }, u0 = {};
 var F = null;
-let C0 = null, K5 = null, O = null, Y = null, a1 = null, e0 = 0;
+let C0 = null, K5 = null, N = null, Y = null, a1 = null, e0 = 0;
 function R1(e, t) {
-  const n = O, r = F, a = e.length === 0, s = t === void 0 ? r : t, o = a ? w9 : {
+  const n = N, r = F, a = e.length === 0, s = t === void 0 ? r : t, o = a ? w9 : {
     owned: null,
     cleanups: null,
     context: s ? s.context : null,
     owner: s
   }, i = a ? e : () => e(() => q(() => n0(o)));
-  F = o, O = null;
+  F = o, N = null;
   try {
     return c1(i, !0);
   } finally {
-    O = n, F = r;
+    N = n, F = r;
   }
 }
 function L(e, t) {
@@ -739,31 +739,31 @@ function F5(e, t, n) {
   const f = /* @__PURE__ */ new Set(), [p, b] = (s.storage || L)(s.initialValue), [k, Z] = L(void 0), [K, w] = L(void 0, {
     equals: !1
   }), [Q, M] = L(C ? "ready" : "unresolved");
-  function $(D, S, P, J) {
-    return o === D && (o = null, J !== void 0 && (C = !0), (D === i || S === i) && s.onHydrated && queueMicrotask(
+  function $(P, S, B, J) {
+    return o === P && (o = null, J !== void 0 && (C = !0), (P === i || S === i) && s.onHydrated && queueMicrotask(
       () => s.onHydrated(J, {
         value: S
       })
-    ), i = u0, x(S, P)), S;
+    ), i = u0, x(S, B)), S;
   }
-  function x(D, S) {
+  function x(P, S) {
     c1(() => {
-      S === void 0 && b(() => D), M(S !== void 0 ? "errored" : C ? "ready" : "unresolved"), Z(S);
-      for (const P of f.keys())
-        P.decrement();
+      S === void 0 && b(() => P), M(S !== void 0 ? "errored" : C ? "ready" : "unresolved"), Z(S);
+      for (const B of f.keys())
+        B.decrement();
       f.clear();
     }, !1);
   }
-  function I() {
-    const D = Q5, S = p(), P = k();
-    if (P !== void 0 && !o)
-      throw P;
-    return O && !O.user && D && j0(() => {
-      K(), o && (D.resolved || f.has(D) || (D.increment(), f.add(D)));
+  function D() {
+    const P = Q5, S = p(), B = k();
+    if (B !== void 0 && !o)
+      throw B;
+    return N && !N.user && P && j0(() => {
+      K(), o && (P.resolved || f.has(P) || (P.increment(), f.add(P)));
     }), S;
   }
-  function V(D = !0) {
-    if (D !== !1 && c)
+  function H(P = !0) {
+    if (P !== !1 && c)
       return;
     c = !1;
     const S = l ? l() : r;
@@ -771,20 +771,20 @@ function F5(e, t, n) {
       $(o, q(p));
       return;
     }
-    const P = i !== u0 ? i : q(
+    const B = i !== u0 ? i : q(
       () => a(S, {
         value: p(),
-        refetching: D
+        refetching: P
       })
     );
-    return j5(P) ? (o = P, "value" in P ? (P.status === "success" ? $(o, P.value, void 0, S) : $(o, void 0, void 0, S), P) : (c = !0, queueMicrotask(() => c = !1), c1(() => {
+    return j5(B) ? (o = B, "value" in B ? (B.status === "success" ? $(o, B.value, void 0, S) : $(o, void 0, void 0, S), B) : (c = !0, queueMicrotask(() => c = !1), c1(() => {
       M(C ? "refreshing" : "pending"), w();
-    }, !1), P.then(
-      (J) => $(P, J, void 0, S),
-      (J) => $(P, void 0, P9(J), S)
-    ))) : ($(o, P, void 0, S), P);
+    }, !1), B.then(
+      (J) => $(B, J, void 0, S),
+      (J) => $(B, void 0, P9(J), S)
+    ))) : ($(o, B, void 0, S), B);
   }
-  return Object.defineProperties(I, {
+  return Object.defineProperties(D, {
     state: {
       get: () => Q()
     },
@@ -793,37 +793,37 @@ function F5(e, t, n) {
     },
     loading: {
       get() {
-        const D = Q();
-        return D === "pending" || D === "refreshing";
+        const P = Q();
+        return P === "pending" || P === "refreshing";
       }
     },
     latest: {
       get() {
         if (!C)
-          return I();
-        const D = k();
-        if (D && !o)
-          throw D;
+          return D();
+        const P = k();
+        if (P && !o)
+          throw P;
         return p();
       }
     }
-  }), l ? j0(() => V(!1)) : V(!1), [
-    I,
+  }), l ? j0(() => H(!1)) : H(!1), [
+    D,
     {
-      refetch: V,
+      refetch: H,
       mutate: b
     }
   ];
 }
 function q(e) {
-  if (O === null)
+  if (N === null)
     return e();
-  const t = O;
-  O = null;
+  const t = N;
+  N = null;
   try {
     return e();
   } finally {
-    O = t;
+    N = t;
   }
 }
 function M9(e) {
@@ -833,11 +833,11 @@ function x0(e) {
   return F === null || (F.cleanups === null ? F.cleanups = [e] : F.cleanups.push(e)), e;
 }
 function Z5(e) {
-  const t = O, n = F;
+  const t = N, n = F;
   return Promise.resolve().then(() => {
-    O = t, F = n;
+    N = t, F = n;
     let r;
-    return c1(e, !1), O = F = null, r ? r.done : void 0;
+    return c1(e, !1), N = F = null, r ? r.done : void 0;
   });
 }
 let Q5;
@@ -847,11 +847,11 @@ function S9() {
       p1(this);
     else {
       const e = Y;
-      Y = null, c1(() => H1(this), !1), Y = e;
+      Y = null, c1(() => V1(this), !1), Y = e;
     }
-  if (O) {
+  if (N) {
     const e = this.observers ? this.observers.length : 0;
-    O.sources ? (O.sources.push(this), O.sourceSlots.push(e)) : (O.sources = [this], O.sourceSlots = [e]), this.observers ? (this.observers.push(O), this.observerSlots.push(O.sources.length - 1)) : (this.observers = [O], this.observerSlots = [O.sources.length - 1]);
+    N.sources ? (N.sources.push(this), N.sourceSlots.push(e)) : (N.sources = [this], N.sourceSlots = [e]), this.observers ? (this.observers.push(N), this.observerSlots.push(N.sources.length - 1)) : (this.observers = [N], this.observerSlots = [N.sources.length - 1]);
   }
   return this.value;
 }
@@ -879,14 +879,14 @@ function p1(e) {
 }
 function R5(e, t, n) {
   let r;
-  const a = F, s = O;
-  O = F = e;
+  const a = F, s = N;
+  N = F = e;
   try {
     r = e.fn(t);
   } catch (o) {
     return e.pure && (e.state = i1, e.owned && e.owned.forEach(n0), e.owned = null), e.updatedAt = n + 1, B9(o);
   } finally {
-    O = s, F = a;
+    N = s, F = a;
   }
   (!e.updatedAt || e.updatedAt <= n) && (e.updatedAt != null && "observers" in e ? T9(e, r) : e.value = r, e.updatedAt = n);
 }
@@ -906,11 +906,11 @@ function t0(e, t, n, r = i1, a) {
   };
   return F === null || F !== w9 && (F.owned ? F.owned.push(s) : F.owned = [s]), s;
 }
-function V1(e) {
+function H1(e) {
   if (e.state === 0)
     return;
   if (e.state === Y1)
-    return H1(e);
+    return V1(e);
   if (e.suspense && q(e.suspense.inFallback))
     return e.suspense.effects.push(e);
   const t = [e];
@@ -921,7 +921,7 @@ function V1(e) {
       p1(e);
     else if (e.state === Y1) {
       const r = Y;
-      Y = null, c1(() => H1(e, t[0]), !1), Y = r;
+      Y = null, c1(() => V1(e, t[0]), !1), Y = r;
     }
 }
 function c1(e, t) {
@@ -944,24 +944,24 @@ function z5(e) {
 }
 function I9(e) {
   for (let t = 0; t < e.length; t++)
-    V1(e[t]);
+    H1(e[t]);
 }
 function U5(e) {
   let t, n = 0;
   for (t = 0; t < e.length; t++) {
     const r = e[t];
-    r.user ? e[n++] = r : V1(r);
+    r.user ? e[n++] = r : H1(r);
   }
   for (t = 0; t < n; t++)
-    V1(e[t]);
+    H1(e[t]);
 }
-function H1(e, t) {
+function V1(e, t) {
   e.state = 0;
   for (let n = 0; n < e.sources.length; n += 1) {
     const r = e.sources[n];
     if (r.sources) {
       const a = r.state;
-      a === i1 ? r !== t && (!r.updatedAt || r.updatedAt < e0) && V1(r) : a === Y1 && H1(r, t);
+      a === i1 ? r !== t && (!r.updatedAt || r.updatedAt < e0) && H1(r) : a === Y1 && V1(r, t);
     }
   }
 }
@@ -1006,14 +1006,14 @@ function F0(e) {
   for (let t = 0; t < e.length; t++)
     e[t]();
 }
-function V5(e, t, n = {}) {
+function H5(e, t, n = {}) {
   let r = [], a = [], s = [], o = 0, i = t.length > 1 ? [] : null;
   return x0(() => F0(s)), () => {
     let c = e() || [], C, l;
     return c[N5], q(() => {
       let p = c.length, b, k, Z, K, w, Q, M, $, x;
       if (p === 0)
-        o !== 0 && (F0(s), s = [], r = [], a = [], o = 0, i && (i = [])), n.fallback && (r = [Y5], a[0] = R1((I) => (s[0] = I, n.fallback())), o = 1);
+        o !== 0 && (F0(s), s = [], r = [], a = [], o = 0, i && (i = [])), n.fallback && (r = [Y5], a[0] = R1((D) => (s[0] = D, n.fallback())), o = 1);
       else if (o === 0) {
         for (a = new Array(p), l = 0; l < p; l++)
           r[l] = c[l], a[l] = R1(f);
@@ -1048,7 +1048,7 @@ function h(e, t) {
 function F1() {
   return !0;
 }
-const H5 = {
+const V5 = {
   get(e, t, n) {
     return t === h0 ? n : e.get(t);
   },
@@ -1111,7 +1111,7 @@ function O9(...e) {
           return [...new Set(o)];
         }
       },
-      H5
+      V5
     );
   const n = {}, r = /* @__PURE__ */ Object.create(null);
   for (let o = e.length - 1; o >= 0; o--) {
@@ -1148,7 +1148,7 @@ function J5(e) {
   const t = "fallback" in e && {
     fallback: () => e.fallback
   };
-  return j(V5(() => e.each, e.children, t || void 0));
+  return j(H5(() => e.each, e.children, t || void 0));
 }
 function U(e) {
   const t = e.keyed, n = j(() => e.when, void 0, {
@@ -1244,7 +1244,7 @@ function e1(e, t = window.document) {
     n.has(s) || (n.add(s), t.addEventListener(s, e6));
   }
 }
-function H(e, t, n) {
+function V(e, t, n) {
   n == null ? e.removeAttribute(t) : e.setAttribute(t, n);
 }
 function f1(e, t) {
@@ -1261,7 +1261,7 @@ function o1(e, t, n, r) {
 }
 function v1(e, t, n) {
   if (!t)
-    return n ? H(e, "style") : t;
+    return n ? V(e, "style") : t;
   const r = e.style;
   if (typeof t == "string")
     return r.cssText = t;
@@ -1399,16 +1399,16 @@ var Z1 = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : t
 function E9(e) {
   return e && e.__esModule && Object.prototype.hasOwnProperty.call(e, "default") ? e.default : e;
 }
-var t6 = typeof Z1 == "object" && Z1 && Z1.Object === Object && Z1, N9 = t6, n6 = N9, r6 = typeof self == "object" && self && self.Object === Object && self, a6 = n6 || r6 || Function("return this")(), t1 = a6, i6 = t1, s6 = i6.Symbol, r0 = s6, R0 = r0, K9 = Object.prototype, o6 = K9.hasOwnProperty, c6 = K9.toString, I1 = R0 ? R0.toStringTag : void 0;
+var t6 = typeof Z1 == "object" && Z1 && Z1.Object === Object && Z1, N9 = t6, n6 = N9, r6 = typeof self == "object" && self && self.Object === Object && self, a6 = n6 || r6 || Function("return this")(), t1 = a6, i6 = t1, s6 = i6.Symbol, r0 = s6, R0 = r0, K9 = Object.prototype, o6 = K9.hasOwnProperty, c6 = K9.toString, D1 = R0 ? R0.toStringTag : void 0;
 function l6(e) {
-  var t = o6.call(e, I1), n = e[I1];
+  var t = o6.call(e, D1), n = e[D1];
   try {
-    e[I1] = void 0;
+    e[D1] = void 0;
     var r = !0;
   } catch {
   }
   var a = c6.call(e);
-  return r && (t ? e[I1] = n : delete e[I1]), a;
+  return r && (t ? e[D1] = n : delete e[D1]), a;
 }
 var u6 = l6, C6 = Object.prototype, f6 = C6.toString;
 function g6(e) {
@@ -1418,12 +1418,12 @@ var y6 = g6, z0 = r0, m6 = u6, h6 = y6, d6 = "[object Null]", p6 = "[object Unde
 function v6(e) {
   return e == null ? e === void 0 ? p6 : d6 : U0 && U0 in Object(e) ? m6(e) : h6(e);
 }
-var P1 = v6;
+var B1 = v6;
 function _6(e) {
   var t = typeof e;
   return e != null && (t == "object" || t == "function");
 }
-var _1 = _6, L6 = P1, b6 = _1, $6 = "[object AsyncFunction]", x6 = "[object Function]", A6 = "[object GeneratorFunction]", k6 = "[object Proxy]";
+var _1 = _6, L6 = B1, b6 = _1, $6 = "[object AsyncFunction]", x6 = "[object Function]", A6 = "[object GeneratorFunction]", k6 = "[object Proxy]";
 function w6(e) {
   if (!b6(e))
     return !1;
@@ -1454,17 +1454,17 @@ function O6(e) {
 var F9 = O6, E6 = j9, N6 = D6, K6 = _1, j6 = F9, F6 = /[\\^$.*+?()[\]{}|]/g, Z6 = /^\[object .+?Constructor\]$/, Q6 = Function.prototype, R6 = Object.prototype, z6 = Q6.toString, U6 = R6.hasOwnProperty, Y6 = RegExp(
   "^" + z6.call(U6).replace(F6, "\\$&").replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, "$1.*?") + "$"
 );
-function V6(e) {
+function H6(e) {
   if (!K6(e) || N6(e))
     return !1;
   var t = E6(e) ? Y6 : Z6;
   return t.test(j6(e));
 }
-var H6 = V6;
+var V6 = H6;
 function G6(e, t) {
   return e == null ? void 0 : e[t];
 }
-var X6 = G6, J6 = H6, W6 = X6;
+var X6 = G6, J6 = V6, W6 = X6;
 function q6(e, t) {
   var n = W6(e, t);
   return J6(n) ? n : void 0;
@@ -1475,9 +1475,9 @@ var g1 = q6, e2 = g1, t2 = function() {
     return e({}, "", {}), e;
   } catch {
   }
-}(), n2 = t2, V0 = n2;
+}(), n2 = t2, H0 = n2;
 function r2(e, t, n) {
-  t == "__proto__" && V0 ? V0(e, t, {
+  t == "__proto__" && H0 ? H0(e, t, {
     configurable: !0,
     enumerable: !0,
     value: n,
@@ -1497,7 +1497,7 @@ var k0 = l2, u2 = Array.isArray, L1 = u2;
 function C2(e) {
   return e != null && typeof e == "object";
 }
-var b1 = C2, f2 = P1, g2 = b1, y2 = "[object Symbol]";
+var b1 = C2, f2 = B1, g2 = b1, y2 = "[object Symbol]";
 function m2(e) {
   return typeof e == "symbol" || g2(e) && f2(e) == y2;
 }
@@ -1508,9 +1508,9 @@ function _2(e, t) {
   var n = typeof e;
   return n == "number" || n == "symbol" || n == "boolean" || e == null || d2(e) ? !0 : v2.test(e) || !p2.test(e) || t != null && e in Object(t);
 }
-var L2 = _2, b2 = g1, $2 = b2(Object, "create"), a0 = $2, H0 = a0;
+var L2 = _2, b2 = g1, $2 = b2(Object, "create"), a0 = $2, V0 = a0;
 function x2() {
-  this.__data__ = H0 ? H0(null) : {}, this.size = 0;
+  this.__data__ = V0 ? V0(null) : {}, this.size = 0;
 }
 var A2 = x2;
 function k2(e) {
@@ -1536,7 +1536,7 @@ function Z2(e, t) {
   var n = this.__data__;
   return this.size += this.has(e) ? 0 : 1, n[e] = j2 && t === void 0 ? F2 : t, this;
 }
-var Q2 = Z2, R2 = A2, z2 = w2, U2 = P2, Y2 = K2, V2 = Q2;
+var Q2 = Z2, R2 = A2, z2 = w2, U2 = P2, Y2 = K2, H2 = Q2;
 function $1(e) {
   var t = -1, n = e == null ? 0 : e.length;
   for (this.clear(); ++t < n; ) {
@@ -1548,8 +1548,8 @@ $1.prototype.clear = R2;
 $1.prototype.delete = z2;
 $1.prototype.get = U2;
 $1.prototype.has = Y2;
-$1.prototype.set = V2;
-var H2 = $1;
+$1.prototype.set = H2;
+var V2 = $1;
 function G2() {
   this.__data__ = [], this.size = 0;
 }
@@ -1595,7 +1595,7 @@ x1.prototype.delete = y3;
 x1.prototype.get = m3;
 x1.prototype.has = h3;
 x1.prototype.set = d3;
-var s0 = x1, p3 = g1, v3 = t1, _3 = p3(v3, "Map"), M0 = _3, G0 = H2, L3 = s0, b3 = M0;
+var s0 = x1, p3 = g1, v3 = t1, _3 = p3(v3, "Map"), M0 = _3, G0 = V2, L3 = s0, b3 = M0;
 function $3() {
   this.size = 0, this.__data__ = {
     hash: new G0(),
@@ -1658,9 +1658,9 @@ function S0(e, t) {
   return n.cache = new (S0.Cache || z9)(), n;
 }
 S0.Cache = z9;
-var V3 = S0, H3 = V3, G3 = 500;
+var H3 = S0, V3 = H3, G3 = 500;
 function X3(e) {
-  var t = H3(e, function(r) {
+  var t = V3(e, function(r) {
     return n.size === G3 && n.clear(), r;
   }), n = t.cache;
   return t;
@@ -1747,18 +1747,18 @@ var Ze = Fe;
 function Qe(e) {
   return this.__data__.has(e);
 }
-var Re = Qe, ze = s0, Ue = M0, Ye = R9, Ve = 200;
-function He(e, t) {
+var Re = Qe, ze = s0, Ue = M0, Ye = R9, He = 200;
+function Ve(e, t) {
   var n = this.__data__;
   if (n instanceof ze) {
     var r = n.__data__;
-    if (!Ue || r.length < Ve - 1)
+    if (!Ue || r.length < He - 1)
       return r.push([e, t]), this.size = ++n.size, this;
     n = this.__data__ = new Ye(r);
   }
   return n.set(e, t), this.size = n.size, this;
 }
-var Ge = He, Xe = s0, Je = Ne, We = je, qe = Ze, e8 = Re, t8 = Ge;
+var Ge = Ve, Xe = s0, Je = Ne, We = je, qe = Ze, e8 = Re, t8 = Ge;
 function k1(e) {
   var t = this.__data__ = new Xe(e);
   this.size = t.size;
@@ -1790,11 +1790,11 @@ function c8(e, t) {
     r[n] = t(n);
   return r;
 }
-var l8 = c8, u8 = P1, C8 = b1, f8 = "[object Arguments]";
+var l8 = c8, u8 = B1, C8 = b1, f8 = "[object Arguments]";
 function g8(e) {
   return C8(e) && u8(e) == f8;
 }
-var y8 = g8, e9 = y8, m8 = b1, V9 = Object.prototype, h8 = V9.hasOwnProperty, d8 = V9.propertyIsEnumerable, p8 = e9(function() {
+var y8 = g8, e9 = y8, m8 = b1, H9 = Object.prototype, h8 = H9.hasOwnProperty, d8 = H9.propertyIsEnumerable, p8 = e9(function() {
   return arguments;
 }()) ? e9 : function(e) {
   return m8(e) && h8.call(e, "callee") && !d8.call(e, "callee");
@@ -1808,15 +1808,15 @@ X1.exports;
   var n = t1, r = L8, a = t && !t.nodeType && t, s = a && !0 && e && !e.nodeType && e, o = s && s.exports === a, i = o ? n.Buffer : void 0, c = i ? i.isBuffer : void 0, C = c || r;
   e.exports = C;
 })(X1, X1.exports);
-var H9 = X1.exports, b8 = 9007199254740991;
+var V9 = X1.exports, b8 = 9007199254740991;
 function $8(e) {
   return typeof e == "number" && e > -1 && e % 1 == 0 && e <= b8;
 }
-var G9 = $8, x8 = P1, A8 = G9, k8 = b1, w8 = "[object Arguments]", M8 = "[object Array]", S8 = "[object Boolean]", T8 = "[object Date]", I8 = "[object Error]", D8 = "[object Function]", P8 = "[object Map]", B8 = "[object Number]", O8 = "[object Object]", E8 = "[object RegExp]", N8 = "[object Set]", K8 = "[object String]", j8 = "[object WeakMap]", F8 = "[object ArrayBuffer]", Z8 = "[object DataView]", Q8 = "[object Float32Array]", R8 = "[object Float64Array]", z8 = "[object Int8Array]", U8 = "[object Int16Array]", Y8 = "[object Int32Array]", V8 = "[object Uint8Array]", H8 = "[object Uint8ClampedArray]", G8 = "[object Uint16Array]", X8 = "[object Uint32Array]", B = {};
-B[Q8] = B[R8] = B[z8] = B[U8] = B[Y8] = B[V8] = B[H8] = B[G8] = B[X8] = !0;
-B[w8] = B[M8] = B[F8] = B[S8] = B[Z8] = B[T8] = B[I8] = B[D8] = B[P8] = B[B8] = B[O8] = B[E8] = B[N8] = B[K8] = B[j8] = !1;
+var G9 = $8, x8 = B1, A8 = G9, k8 = b1, w8 = "[object Arguments]", M8 = "[object Array]", S8 = "[object Boolean]", T8 = "[object Date]", I8 = "[object Error]", D8 = "[object Function]", P8 = "[object Map]", B8 = "[object Number]", O8 = "[object Object]", E8 = "[object RegExp]", N8 = "[object Set]", K8 = "[object String]", j8 = "[object WeakMap]", F8 = "[object ArrayBuffer]", Z8 = "[object DataView]", Q8 = "[object Float32Array]", R8 = "[object Float64Array]", z8 = "[object Int8Array]", U8 = "[object Int16Array]", Y8 = "[object Int32Array]", H8 = "[object Uint8Array]", V8 = "[object Uint8ClampedArray]", G8 = "[object Uint16Array]", X8 = "[object Uint32Array]", E = {};
+E[Q8] = E[R8] = E[z8] = E[U8] = E[Y8] = E[H8] = E[V8] = E[G8] = E[X8] = !0;
+E[w8] = E[M8] = E[F8] = E[S8] = E[Z8] = E[T8] = E[I8] = E[D8] = E[P8] = E[B8] = E[O8] = E[E8] = E[N8] = E[K8] = E[j8] = !1;
 function J8(e) {
-  return k8(e) && A8(e.length) && !!B[x8(e)];
+  return k8(e) && A8(e.length) && !!E[x8(e)];
 }
 var W8 = J8;
 function q8(e) {
@@ -1836,7 +1836,7 @@ J1.exports;
   }();
   e.exports = i;
 })(J1, J1.exports);
-var I0 = J1.exports, e7 = W8, t7 = T0, t9 = I0, n9 = t9 && t9.isTypedArray, n7 = n9 ? t7(n9) : e7, r7 = n7, a7 = l8, i7 = v8, s7 = L1, o7 = H9, c7 = Y9, l7 = r7, u7 = Object.prototype, C7 = u7.hasOwnProperty;
+var I0 = J1.exports, e7 = W8, t7 = T0, t9 = I0, n9 = t9 && t9.isTypedArray, n7 = n9 ? t7(n9) : e7, r7 = n7, a7 = l8, i7 = v8, s7 = L1, o7 = V9, c7 = Y9, l7 = r7, u7 = Object.prototype, C7 = u7.hasOwnProperty;
 function f7(e, t) {
   var n = s7(e), r = !n && i7(e), a = !n && !r && o7(e), s = !n && !r && !a && l7(e), o = n || r || a || s, i = o ? a7(e.length, String) : [], c = i.length;
   for (var C in e)
@@ -1896,11 +1896,11 @@ function R7(e) {
     r == "constructor" && (t || !Q7.call(e, r)) || n.push(r);
   return n;
 }
-var z7 = R7, U7 = X9, Y7 = z7, V7 = W9;
-function H7(e) {
-  return V7(e) ? U7(e, !0) : Y7(e);
+var z7 = R7, U7 = X9, Y7 = z7, H7 = W9;
+function V7(e) {
+  return H7(e) ? U7(e, !0) : Y7(e);
 }
-var B0 = H7, G7 = c0, X7 = B0;
+var B0 = V7, G7 = c0, X7 = B0;
 function J7(e, t) {
   return e && G7(t, X7(t), e);
 }
@@ -1970,7 +1970,7 @@ var Bt = Pt, Ot = r5, Et = n5, Nt = B0;
 function Kt(e) {
   return Ot(e, Nt, Et);
 }
-var jt = Kt, Ft = g1, Zt = t1, Qt = Ft(Zt, "DataView"), Rt = Qt, zt = g1, Ut = t1, Yt = zt(Ut, "Promise"), Vt = Yt, Ht = g1, Gt = t1, Xt = Ht(Gt, "Set"), Jt = Xt, Wt = g1, qt = t1, e4 = Wt(qt, "WeakMap"), t4 = e4, v0 = Rt, _0 = M0, L0 = Vt, b0 = Jt, $0 = t4, a5 = P1, w1 = F9, a9 = "[object Map]", n4 = "[object Object]", i9 = "[object Promise]", s9 = "[object Set]", o9 = "[object WeakMap]", c9 = "[object DataView]", r4 = w1(v0), a4 = w1(_0), i4 = w1(L0), s4 = w1(b0), o4 = w1($0), C1 = a5;
+var jt = Kt, Ft = g1, Zt = t1, Qt = Ft(Zt, "DataView"), Rt = Qt, zt = g1, Ut = t1, Yt = zt(Ut, "Promise"), Ht = Yt, Vt = g1, Gt = t1, Xt = Vt(Gt, "Set"), Jt = Xt, Wt = g1, qt = t1, e4 = Wt(qt, "WeakMap"), t4 = e4, v0 = Rt, _0 = M0, L0 = Ht, b0 = Jt, $0 = t4, a5 = B1, w1 = F9, a9 = "[object Map]", n4 = "[object Object]", i9 = "[object Promise]", s9 = "[object Set]", o9 = "[object WeakMap]", c9 = "[object DataView]", r4 = w1(v0), a4 = w1(_0), i4 = w1(L0), s4 = w1(b0), o4 = w1($0), C1 = a5;
 (v0 && C1(new v0(new ArrayBuffer(1))) != c9 || _0 && C1(new _0()) != a9 || L0 && C1(L0.resolve()) != i9 || b0 && C1(new b0()) != s9 || $0 && C1(new $0()) != o9) && (C1 = function(e) {
   var t = a5(e), n = t == n4 ? e.constructor : void 0, r = n ? w1(n) : "";
   if (r)
@@ -2017,7 +2017,7 @@ function A4(e, t) {
   var n = t ? x4(e.buffer) : e.buffer;
   return new e.constructor(n, e.byteOffset, e.length);
 }
-var k4 = A4, w4 = N0, M4 = p4, S4 = L4, T4 = $4, I4 = k4, D4 = "[object Boolean]", P4 = "[object Date]", B4 = "[object Map]", O4 = "[object Number]", E4 = "[object RegExp]", N4 = "[object Set]", K4 = "[object String]", j4 = "[object Symbol]", F4 = "[object ArrayBuffer]", Z4 = "[object DataView]", Q4 = "[object Float32Array]", R4 = "[object Float64Array]", z4 = "[object Int8Array]", U4 = "[object Int16Array]", Y4 = "[object Int32Array]", V4 = "[object Uint8Array]", H4 = "[object Uint8ClampedArray]", G4 = "[object Uint16Array]", X4 = "[object Uint32Array]";
+var k4 = A4, w4 = N0, M4 = p4, S4 = L4, T4 = $4, I4 = k4, D4 = "[object Boolean]", P4 = "[object Date]", B4 = "[object Map]", O4 = "[object Number]", E4 = "[object RegExp]", N4 = "[object Set]", K4 = "[object String]", j4 = "[object Symbol]", F4 = "[object ArrayBuffer]", Z4 = "[object DataView]", Q4 = "[object Float32Array]", R4 = "[object Float64Array]", z4 = "[object Int8Array]", U4 = "[object Int16Array]", Y4 = "[object Int32Array]", H4 = "[object Uint8Array]", V4 = "[object Uint8ClampedArray]", G4 = "[object Uint16Array]", X4 = "[object Uint32Array]";
 function J4(e, t, n) {
   var r = e.constructor;
   switch (t) {
@@ -2033,8 +2033,8 @@ function J4(e, t, n) {
     case z4:
     case U4:
     case Y4:
-    case V4:
     case H4:
+    case V4:
     case G4:
     case X4:
       return I4(e, n);
@@ -2075,11 +2075,11 @@ var fn = Cn, gn = fn, yn = T0, y9 = I0, m9 = y9 && y9.isMap, mn = m9 ? yn(m9) : 
 function _n(e) {
   return pn(e) && dn(e) == vn;
 }
-var Ln = _n, bn = Ln, $n = T0, h9 = I0, d9 = h9 && h9.isSet, xn = d9 ? $n(d9) : bn, An = xn, kn = n8, wn = a8, Mn = k0, Sn = O7, Tn = W7, In = q7, Dn = tt, Pn = gt, Bn = kt, On = Bt, En = jt, Nn = E0, Kn = C4, jn = W4, Fn = on, Zn = L1, Qn = H9, Rn = hn, zn = _1, Un = An, Yn = P0, Vn = B0, Hn = 1, Gn = 2, Xn = 4, i5 = "[object Arguments]", Jn = "[object Array]", Wn = "[object Boolean]", qn = "[object Date]", er = "[object Error]", s5 = "[object Function]", tr = "[object GeneratorFunction]", nr = "[object Map]", rr = "[object Number]", o5 = "[object Object]", ar = "[object RegExp]", ir = "[object Set]", sr = "[object String]", or = "[object Symbol]", cr = "[object WeakMap]", lr = "[object ArrayBuffer]", ur = "[object DataView]", Cr = "[object Float32Array]", fr = "[object Float64Array]", gr = "[object Int8Array]", yr = "[object Int16Array]", mr = "[object Int32Array]", hr = "[object Uint8Array]", dr = "[object Uint8ClampedArray]", pr = "[object Uint16Array]", vr = "[object Uint32Array]", T = {};
+var Ln = _n, bn = Ln, $n = T0, h9 = I0, d9 = h9 && h9.isSet, xn = d9 ? $n(d9) : bn, An = xn, kn = n8, wn = a8, Mn = k0, Sn = O7, Tn = W7, In = q7, Dn = tt, Pn = gt, Bn = kt, On = Bt, En = jt, Nn = E0, Kn = C4, jn = W4, Fn = on, Zn = L1, Qn = V9, Rn = hn, zn = _1, Un = An, Yn = P0, Hn = B0, Vn = 1, Gn = 2, Xn = 4, i5 = "[object Arguments]", Jn = "[object Array]", Wn = "[object Boolean]", qn = "[object Date]", er = "[object Error]", s5 = "[object Function]", tr = "[object GeneratorFunction]", nr = "[object Map]", rr = "[object Number]", o5 = "[object Object]", ar = "[object RegExp]", ir = "[object Set]", sr = "[object String]", or = "[object Symbol]", cr = "[object WeakMap]", lr = "[object ArrayBuffer]", ur = "[object DataView]", Cr = "[object Float32Array]", fr = "[object Float64Array]", gr = "[object Int8Array]", yr = "[object Int16Array]", mr = "[object Int32Array]", hr = "[object Uint8Array]", dr = "[object Uint8ClampedArray]", pr = "[object Uint16Array]", vr = "[object Uint32Array]", T = {};
 T[i5] = T[Jn] = T[lr] = T[ur] = T[Wn] = T[qn] = T[Cr] = T[fr] = T[gr] = T[yr] = T[mr] = T[nr] = T[rr] = T[o5] = T[ar] = T[ir] = T[sr] = T[or] = T[hr] = T[dr] = T[pr] = T[vr] = !0;
 T[er] = T[s5] = T[cr] = !1;
 function z1(e, t, n, r, a, s) {
-  var o, i = t & Hn, c = t & Gn, C = t & Xn;
+  var o, i = t & Vn, c = t & Gn, C = t & Xn;
   if (n && (o = a ? n(e, r, a, s) : n(e)), o !== void 0)
     return o;
   if (!zn(e))
@@ -2110,7 +2110,7 @@ function z1(e, t, n, r, a, s) {
   }) : Rn(e) && e.forEach(function(K, w) {
     o.set(w, z1(K, t, n, w, e, s));
   });
-  var k = C ? c ? En : On : c ? Vn : Yn, Z = l ? void 0 : k(e);
+  var k = C ? c ? En : On : c ? Hn : Yn, Z = l ? void 0 : k(e);
   return wn(Z || e, function(K, w) {
     Z && (w = K, K = e[w]), Mn(o, w, z1(K, t, n, w, e, s));
   }), o;
@@ -2260,7 +2260,7 @@ const l5 = (e) => {
   })();
 };
 e1(["click"]);
-var Ur = /* @__PURE__ */ y("<span class=prefix>"), Yr = /* @__PURE__ */ y("<span class=suffix>"), Vr = /* @__PURE__ */ y("<div><input class=value>");
+var Ur = /* @__PURE__ */ y("<span class=prefix>"), Yr = /* @__PURE__ */ y("<span class=suffix>"), Hr = /* @__PURE__ */ y("<div><input class=value>");
 const u5 = (e) => {
   const t = O9({
     min: Number.MIN_SAFE_INTEGER,
@@ -2269,7 +2269,7 @@ const u5 = (e) => {
   let n;
   const [r, a] = L("normal");
   return (() => {
-    var s = Vr(), o = s.firstChild;
+    var s = Hr(), o = s.firstChild;
     return s.$$click = () => {
       n == null || n.focus();
     }, d(s, h(U, {
@@ -2305,7 +2305,7 @@ const u5 = (e) => {
       }
     }), null), R((i) => {
       var c = t.style, C = `tradingsoccerwrap-input ${t.class ?? ""}`, l = r(), f = t.placeholder ?? "";
-      return i.e = v1(s, c, i.e), C !== i.t && f1(s, i.t = C), l !== i.a && H(s, "data-status", i.a = l), f !== i.o && H(o, "placeholder", i.o = f), i;
+      return i.e = v1(s, c, i.e), C !== i.t && f1(s, i.t = C), l !== i.a && V(s, "data-status", i.a = l), f !== i.o && V(o, "placeholder", i.o = f), i;
     }, {
       e: void 0,
       t: void 0,
@@ -2315,9 +2315,9 @@ const u5 = (e) => {
   })();
 };
 e1(["click"]);
-var Hr = /* @__PURE__ */ y("<div><i class=thumb>");
+var Vr = /* @__PURE__ */ y("<div><i class=thumb>");
 const Gr = (e) => (() => {
-  var t = Hr();
+  var t = Vr();
   return t.$$click = (n) => {
     e.onChange && e.onChange();
   }, R((n) => {
@@ -2329,7 +2329,7 @@ const Gr = (e) => (() => {
   }), t;
 })();
 e1(["click"]);
-const Xr = "指标", Jr = "主图指标", Wr = "副图指标", qr = "设置", ea = "时区", ta = "截屏", na = "全屏", ra = "退出全屏", aa = "保存", ia = "确定", sa = "取消", oa = "MA(移动平均线)", ca = "EMA(指数平滑移动平均线)", la = "SMA", ua = "BOLL(布林线)", Ca = "BBI(多空指数)", fa = "SAR(停损点指向指标)", ga = "VOL(成交量)", ya = "MACD(指数平滑异同移动平均线)", ma = "KDJ(随机指标)", ha = "RSI(相对强弱指标)", da = "BIAS(乖离率)", pa = "BRAR(情绪指标)", va = "CCI(顺势指标)", _a = "DMI(动向指标)", La = "CR(能量指标)", ba = "PSY(心理线)", $a = "DMA(平行线差指标)", xa = "TRIX(三重指数平滑平均线)", Aa = "OBV(能量潮指标)", ka = "VR(成交量变异率)", wa = "WR(威廉指标)", Ma = "MTM(动量指标)", Sa = "EMV(简易波动指标)", Ta = "ROC(变动率指标)", Ia = "PVT(价量趋势指标)", Da = "AO(动量震荡指标)", Pa = "世界统一时间", Ba = "(UTC-10) 檀香山", Oa = "(UTC-8) 朱诺", Ea = "(UTC-7) 洛杉矶", Na = "(UTC-5) 芝加哥", Ka = "(UTC-4) 多伦多", ja = "(UTC-3) 圣保罗", Fa = "(UTC+1) 伦敦", Za = "(UTC+2) 柏林", Qa = "(UTC+3) 巴林", Ra = "(UTC+4) 迪拜", za = "(UTC+5) 阿什哈巴德", Ua = "(UTC+6) 阿拉木图", Ya = "(UTC+7) 曼谷", Va = "(UTC+8) 上海", Ha = "(UTC+9) 东京", Ga = "(UTC+10) 悉尼", Xa = "(UTC+12) 诺福克岛", Ja = "水平直线", Wa = "水平射线", qa = "水平线段", ei = "垂直直线", ti = "垂直射线", ni = "垂直线段", ri = "直线", ai = "射线", ii = "线段", si = "箭头", oi = "价格线", ci = "价格通道线", li = "平行直线", ui = "斐波那契回调直线", Ci = "斐波那契回调线段", fi = "斐波那契圆环", gi = "斐波那契螺旋", yi = "斐波那契速度阻力扇", mi = "斐波那契趋势扩展", hi = "江恩箱", di = "矩形", pi = "平行四边形", vi = "圆", _i = "三角形", Li = "三浪", bi = "五浪", $i = "八浪", xi = "任意浪", Ai = "ABCD形态", ki = "XABCD形态", wi = "弱磁模式", Mi = "强磁模式", Si = "商品搜索", Ti = "商品代码", Ii = "参数1", Di = "参数2", Pi = "参数3", Bi = "参数4", Oi = "参数5", Ei = "周期", Ni = "标准差", Ki = "蜡烛图类型", ji = "全实心", Fi = "全空心", Zi = "涨空心", Qi = "跌空心", Ri = "OHLC", zi = "面积图", Ui = "最新价显示", Yi = "最高价显示", Vi = "最低价显示", Hi = "指标最新值显示", Gi = "价格轴类型", Xi = "线性轴", Ji = "百分比轴", Wi = "对数轴", qi = "倒置坐标", es = "网格线显示", ts = "恢复默认", ns = {
+const Xr = "指标", Jr = "主图指标", Wr = "副图指标", qr = "设置", ea = "时区", ta = "截屏", na = "全屏", ra = "退出全屏", aa = "保存", ia = "确定", sa = "取消", oa = "MA(移动平均线)", ca = "EMA(指数平滑移动平均线)", la = "SMA", ua = "BOLL(布林线)", Ca = "BBI(多空指数)", fa = "SAR(停损点指向指标)", ga = "VOL(成交量)", ya = "MACD(指数平滑异同移动平均线)", ma = "KDJ(随机指标)", ha = "RSI(相对强弱指标)", da = "BIAS(乖离率)", pa = "BRAR(情绪指标)", va = "CCI(顺势指标)", _a = "DMI(动向指标)", La = "CR(能量指标)", ba = "PSY(心理线)", $a = "DMA(平行线差指标)", xa = "TRIX(三重指数平滑平均线)", Aa = "OBV(能量潮指标)", ka = "VR(成交量变异率)", wa = "WR(威廉指标)", Ma = "MTM(动量指标)", Sa = "EMV(简易波动指标)", Ta = "ROC(变动率指标)", Ia = "PVT(价量趋势指标)", Da = "AO(动量震荡指标)", Pa = "世界统一时间", Ba = "(UTC-10) 檀香山", Oa = "(UTC-8) 朱诺", Ea = "(UTC-7) 洛杉矶", Na = "(UTC-5) 芝加哥", Ka = "(UTC-4) 多伦多", ja = "(UTC-3) 圣保罗", Fa = "(UTC+1) 伦敦", Za = "(UTC+2) 柏林", Qa = "(UTC+3) 巴林", Ra = "(UTC+4) 迪拜", za = "(UTC+5) 阿什哈巴德", Ua = "(UTC+6) 阿拉木图", Ya = "(UTC+7) 曼谷", Ha = "(UTC+8) 上海", Va = "(UTC+9) 东京", Ga = "(UTC+10) 悉尼", Xa = "(UTC+12) 诺福克岛", Ja = "水平直线", Wa = "水平射线", qa = "水平线段", ei = "垂直直线", ti = "垂直射线", ni = "垂直线段", ri = "直线", ai = "射线", ii = "线段", si = "箭头", oi = "价格线", ci = "价格通道线", li = "平行直线", ui = "斐波那契回调直线", Ci = "斐波那契回调线段", fi = "斐波那契圆环", gi = "斐波那契螺旋", yi = "斐波那契速度阻力扇", mi = "斐波那契趋势扩展", hi = "江恩箱", di = "矩形", pi = "平行四边形", vi = "圆", _i = "三角形", Li = "三浪", bi = "五浪", $i = "八浪", xi = "任意浪", Ai = "ABCD形态", ki = "XABCD形态", wi = "弱磁模式", Mi = "强磁模式", Si = "商品搜索", Ti = "商品代码", Ii = "参数1", Di = "参数2", Pi = "参数3", Bi = "参数4", Oi = "参数5", Ei = "周期", Ni = "标准差", Ki = "蜡烛图类型", ji = "全实心", Fi = "全空心", Zi = "涨空心", Qi = "跌空心", Ri = "OHLC", zi = "面积图", Ui = "最新价显示", Yi = "最高价显示", Hi = "最低价显示", Vi = "指标最新值显示", Gi = "价格轴类型", Xi = "线性轴", Ji = "百分比轴", Wi = "对数轴", qi = "倒置坐标", es = "网格线显示", ts = "恢复默认", ns = {
   indicator: Xr,
   main_indicator: Jr,
   sub_indicator: Wr,
@@ -2381,8 +2381,8 @@ const Xr = "指标", Jr = "主图指标", Wr = "副图指标", qr = "设置", ea
   ashkhabad: za,
   almaty: Ua,
   bangkok: Ya,
-  shanghai: Va,
-  tokyo: Ha,
+  shanghai: Ha,
+  tokyo: Va,
   sydney: Ga,
   norfolk: Xa,
   horizontal_straight_line: Ja,
@@ -2435,8 +2435,8 @@ const Xr = "指标", Jr = "主图指标", Wr = "副图指标", qr = "设置", ea
   area: zi,
   last_price_show: Ui,
   high_price_show: Yi,
-  low_price_show: Vi,
-  indicator_last_value_show: Hi,
+  low_price_show: Hi,
+  indicator_last_value_show: Vi,
   price_axis_type: Gi,
   normal: Xi,
   percentage: Ji,
@@ -2444,7 +2444,7 @@ const Xr = "指标", Jr = "主图指标", Wr = "副图指标", qr = "设置", ea
   reverse_coordinate: qi,
   grid_show: es,
   restore_default: ts
-}, rs = "Indicator", as = "Main Indicator", is = "Sub Indicator", ss = "Setting", os = "Timezone", cs = "Screenshot", ls = "Full Screen", us = "Exit", Cs = "Save", fs = "Confirm", gs = "Cancel", ys = "MA(Moving Average)", ms = "EMA(Exponential Moving Average)", hs = "SMA", ds = "BOLL(Bolinger Bands)", ps = "BBI(Bull And Bearlndex)", vs = "SAR(Stop and Reverse)", _s = "VOL(Volume)", Ls = "MACD(Moving Average Convergence / Divergence)", bs = "KDJ(KDJ Index)", $s = "RSI(Relative Strength Index)", xs = "BIAS(Bias Ratio)", As = "BRAR(情绪指标)", ks = "CCI(Commodity Channel Index)", ws = "DMI(Directional Movement Index)", Ms = "CR(能量指标)", Ss = "PSY(Psychological Line)", Ts = "DMA(Different of Moving Average)", Is = "TRIX(Triple Exponentially Smoothed Moving Average)", Ds = "OBV(On Balance Volume)", Ps = "VR(Volatility Volume Ratio)", Bs = "WR(Williams %R)", Os = "MTM(Momentum Index)", Es = "EMV(Ease of Movement Value)", Ns = "ROC(Price Rate of Change)", Ks = "PVT(Price and Volume Trend)", js = "AO(Awesome Oscillator)", Fs = "UTC", Zs = "(UTC-10) Honolulu", Qs = "(UTC-8) Juneau", Rs = "(UTC-7) Los Angeles", zs = "(UTC-5) Chicago", Us = "(UTC-4) Toronto", Ys = "(UTC-3) Sao Paulo", Vs = "(UTC+1) London", Hs = "(UTC+2) Berlin", Gs = "(UTC+3) Bahrain", Xs = "(UTC+4) Dubai", Js = "(UTC+5) Ashkhabad", Ws = "(UTC+6) Almaty", qs = "(UTC+7) Bangkok", eo = "(UTC+8) Shanghai", to = "(UTC+9) Tokyo", no = "(UTC+10) Sydney", ro = "(UTC+12) Norfolk", ao = "Horizontal Line", io = "Horizontal Ray", so = "Horizontal Segment", oo = "Vertical Line", co = "Vertical Ray", lo = "Vertical Segment", uo = "Trend Line", Co = "Ray", fo = "Segment", go = "Arrow", yo = "Price Line", mo = "Price Channel Line", ho = "Parallel Line", po = "Fibonacci Line", vo = "Fibonacci Segment", _o = "Fibonacci Circle", Lo = "Fibonacci Spiral", bo = "Fibonacci Sector", $o = "Fibonacci Extension", xo = "Gann Box", Ao = "Rect", ko = "Parallelogram", wo = "Circle", Mo = "Triangle", So = "Three Waves", To = "Five Waves", Io = "Eight Waves", Do = "Any Waves", Po = "ABCD Pattern", Bo = "XABCD Pattern", Oo = "Weak Magnet", Eo = "Strong Magnet", No = "Symbol Search", Ko = "Symbol Code", jo = "Parameter 1", Fo = "Parameter 2", Zo = "Parameter 3", Qo = "Parameter 4", Ro = "Parameter 5", zo = "Period", Uo = "Standard Deviation", Yo = "Candle Type", Vo = "Candle Solid", Ho = "Candle Stroke", Go = "Candle Up Stroke", Xo = "Candle Down Stroke", Jo = "OHLC", Wo = "Area", qo = "Show Last Price", ec = "Show Highest Price", tc = "Show Lowest Price", nc = "Show indicator's last value", rc = "Price Axis Type", ac = "Normal", ic = "Percentage", sc = "Log", oc = "Reverse Coordinate", cc = "Show Grids", lc = "Restore Defaults", uc = {
+}, rs = "Indicator", as = "Main Indicator", is = "Sub Indicator", ss = "Setting", os = "Timezone", cs = "Screenshot", ls = "Full Screen", us = "Exit", Cs = "Save", fs = "Confirm", gs = "Cancel", ys = "MA(Moving Average)", ms = "EMA(Exponential Moving Average)", hs = "SMA", ds = "BOLL(Bolinger Bands)", ps = "BBI(Bull And Bearlndex)", vs = "SAR(Stop and Reverse)", _s = "VOL(Volume)", Ls = "MACD(Moving Average Convergence / Divergence)", bs = "KDJ(KDJ Index)", $s = "RSI(Relative Strength Index)", xs = "BIAS(Bias Ratio)", As = "BRAR(情绪指标)", ks = "CCI(Commodity Channel Index)", ws = "DMI(Directional Movement Index)", Ms = "CR(能量指标)", Ss = "PSY(Psychological Line)", Ts = "DMA(Different of Moving Average)", Is = "TRIX(Triple Exponentially Smoothed Moving Average)", Ds = "OBV(On Balance Volume)", Ps = "VR(Volatility Volume Ratio)", Bs = "WR(Williams %R)", Os = "MTM(Momentum Index)", Es = "EMV(Ease of Movement Value)", Ns = "ROC(Price Rate of Change)", Ks = "PVT(Price and Volume Trend)", js = "AO(Awesome Oscillator)", Fs = "UTC", Zs = "(UTC-10) Honolulu", Qs = "(UTC-8) Juneau", Rs = "(UTC-7) Los Angeles", zs = "(UTC-5) Chicago", Us = "(UTC-4) Toronto", Ys = "(UTC-3) Sao Paulo", Hs = "(UTC+1) London", Vs = "(UTC+2) Berlin", Gs = "(UTC+3) Bahrain", Xs = "(UTC+4) Dubai", Js = "(UTC+5) Ashkhabad", Ws = "(UTC+6) Almaty", qs = "(UTC+7) Bangkok", eo = "(UTC+8) Shanghai", to = "(UTC+9) Tokyo", no = "(UTC+10) Sydney", ro = "(UTC+12) Norfolk", ao = "Horizontal Line", io = "Horizontal Ray", so = "Horizontal Segment", oo = "Vertical Line", co = "Vertical Ray", lo = "Vertical Segment", uo = "Trend Line", Co = "Ray", fo = "Segment", go = "Arrow", yo = "Price Line", mo = "Price Channel Line", ho = "Parallel Line", po = "Fibonacci Line", vo = "Fibonacci Segment", _o = "Fibonacci Circle", Lo = "Fibonacci Spiral", bo = "Fibonacci Sector", $o = "Fibonacci Extension", xo = "Gann Box", Ao = "Rect", ko = "Parallelogram", wo = "Circle", Mo = "Triangle", So = "Three Waves", To = "Five Waves", Io = "Eight Waves", Do = "Any Waves", Po = "ABCD Pattern", Bo = "XABCD Pattern", Oo = "Weak Magnet", Eo = "Strong Magnet", No = "Symbol Search", Ko = "Symbol Code", jo = "Parameter 1", Fo = "Parameter 2", Zo = "Parameter 3", Qo = "Parameter 4", Ro = "Parameter 5", zo = "Period", Uo = "Standard Deviation", Yo = "Candle Type", Ho = "Candle Solid", Vo = "Candle Stroke", Go = "Candle Up Stroke", Xo = "Candle Down Stroke", Jo = "OHLC", Wo = "Area", qo = "Show Last Price", ec = "Show Highest Price", tc = "Show Lowest Price", nc = "Show indicator's last value", rc = "Price Axis Type", ac = "Normal", ic = "Percentage", sc = "Log", oc = "Reverse Coordinate", cc = "Show Grids", lc = "Restore Defaults", uc = {
   indicator: rs,
   main_indicator: as,
   sub_indicator: is,
@@ -2489,8 +2489,8 @@ const Xr = "指标", Jr = "主图指标", Wr = "副图指标", qr = "设置", ea
   chicago: zs,
   toronto: Us,
   sao_paulo: Ys,
-  london: Vs,
-  berlin: Hs,
+  london: Hs,
+  berlin: Vs,
   bahrain: Gs,
   dubai: Xs,
   ashkhabad: Js,
@@ -2542,8 +2542,8 @@ const Xr = "指标", Jr = "主图指标", Wr = "副图指标", qr = "设置", ea
   period: zo,
   standard_deviation: Uo,
   candle_type: Yo,
-  candle_solid: Vo,
-  candle_stroke: Ho,
+  candle_solid: Ho,
+  candle_stroke: Vo,
   candle_up_stroke: Go,
   candle_down_stroke: Xo,
   ohlc: Jo,
@@ -2589,22 +2589,22 @@ const hc = (e) => {
         return e.symbol;
       },
       get children() {
-        var x = fc(), I = x.firstChild;
+        var x = fc(), D = x.firstChild;
         return o1(x, "click", e.onSymbolClick, !0), d(x, h(U, {
           get when() {
             return e.symbol.logo;
           },
           get children() {
-            var V = Cc();
-            return R(() => H(V, "src", e.symbol.logo)), V;
+            var H = Cc();
+            return R(() => V(H, "src", e.symbol.logo)), H;
           }
-        }), I), d(I, () => e.symbol.shortName ?? e.symbol.name ?? e.symbol.ticker), x;
+        }), D), d(D, () => e.symbol.shortName ?? e.symbol.name ?? e.symbol.ticker), x;
       }
     }), c), d(s, () => e.periods.map((x) => (() => {
-      var I = y0();
-      return I.$$click = () => {
+      var D = y0();
+      return D.$$click = () => {
         e.onPeriodChange(x);
-      }, d(I, () => x.text), R(() => f1(I, `item period ${x.text === e.period.text ? "selected" : ""}`)), I;
+      }, d(D, () => x.text), R(() => f1(D, `item period ${x.text === e.period.text ? "selected" : ""}`)), D;
     })()), c), o1(c, "click", e.onIndicatorClick, !0), d(l, () => u("indicator", e.locale)), o1(f, "click", e.onTimezoneClick, !0), d(b, () => u("timezone", e.locale)), o1(k, "click", e.onSettingClick, !0), d(K, () => u("setting", e.locale)), o1(w, "click", e.onScreenshotClick, !0), d(M, () => u("screenshot", e.locale)), $.$$click = () => {
       if (n())
         document.exitFullscreen.call(document);
@@ -2615,13 +2615,13 @@ const hc = (e) => {
     }, d($, (() => {
       var x = j(() => !!n());
       return () => x() ? [yc(), (() => {
-        var I = y0();
-        return d(I, () => u("exit_full_screen", e.locale)), I;
+        var D = y0();
+        return d(D, () => u("exit_full_screen", e.locale)), D;
       })()] : [mc(), (() => {
-        var I = y0();
-        return d(I, () => u("full_screen", e.locale)), I;
+        var D = y0();
+        return d(D, () => u("full_screen", e.locale)), D;
       })()];
-    })()), R(() => H(i, "class", e.spread ? "" : "rotate")), s;
+    })()), R(() => V(i, "class", e.spread ? "" : "rotate")), s;
   })();
 };
 e1(["click"]);
@@ -2655,8 +2655,8 @@ var Rc = /* @__PURE__ */ y('<svg class=icon-overlay viewBox="0 0 22 22"><path d=
 const zc = () => Rc();
 var Uc = /* @__PURE__ */ y('<svg class=icon-overlay viewBox="0 0 22 22"><path d=M4.91465,6C4.70873,6.582599999999999,4.15311,7,3.5,7C2.671573,7,2,6.32843,2,5.5C2,4.671573,2.671573,4,3.5,4C4.15311,4,4.70873,4.417404,4.91465,5L18.2257,5C18.5018,5,18.7257,5.22386,18.7257,5.5C18.7257,5.77614,18.5018,6,18.2257,6L4.91465,6ZM2.7257,8.5C2.7257,8.22386,2.949558,8,3.2257,8L18.2257,8C18.5018,8,18.7257,8.22386,18.7257,8.5C18.7257,8.77614,18.5018,9,18.2257,9L3.2257,9C2.949558,9,2.7257,8.77614,2.7257,8.5ZM3.00425,11.5C3.00425,11.22386,3.22811,11,3.50425,11L18.5042,11C18.7804,11,19.0042,11.22386,19.0042,11.5C19.0042,11.77614,18.7804,12,18.5042,12L3.50425,12C3.22811,12,3.00425,11.77614,3.00425,11.5ZM2.864967,14.5C2.864967,14.2239,3.08882,14,3.36497,14L18.365,14C18.6411,14,18.865,14.2239,18.865,14.5C18.865,14.7761,18.6411,15,18.365,15L3.36497,15C3.08882,15,2.864967,14.7761,2.864967,14.5ZM20,17.5C20,18.328400000000002,19.3284,19,18.5,19C17.846899999999998,19,17.2913,18.5826,17.0854,18L3.50425,18C3.22811,18,3.00425,17.7761,3.00425,17.5C3.00425,17.2239,3.22811,17,3.50425,17L17.0854,17C17.2913,16.4174,17.846899999999998,16,18.5,16C19.3284,16,20,16.671599999999998,20,17.5Z stroke-opacity=0 stroke=none>');
 const Yc = () => Uc();
-var Vc = /* @__PURE__ */ y('<svg class=icon-overlay viewBox="0 0 22 22"><ellipse cx=10.5 cy=11.5 rx=1.5 ry=1.5 stroke-opacity=0 stroke=none></ellipse><ellipse cx=17.5 cy=11.5 rx=1.5 ry=1.5 stroke-opacity=0 stroke=none></ellipse><ellipse cx=10.5 cy=11.5 rx=7 ry=7 fill-opacity=0 stroke-opacity=1 fill=none stroke-width=1></ellipse><ellipse cx=10.5 cy=11.5 rx=5 ry=5 fill-opacity=0 stroke-opacity=1 fill=none stroke-width=1></ellipse><ellipse cx=10.5 cy=11.5 rx=3 ry=3 fill-opacity=0 stroke-opacity=1 fill=none stroke-width=1>');
-const Hc = () => Vc();
+var Hc = /* @__PURE__ */ y('<svg class=icon-overlay viewBox="0 0 22 22"><ellipse cx=10.5 cy=11.5 rx=1.5 ry=1.5 stroke-opacity=0 stroke=none></ellipse><ellipse cx=17.5 cy=11.5 rx=1.5 ry=1.5 stroke-opacity=0 stroke=none></ellipse><ellipse cx=10.5 cy=11.5 rx=7 ry=7 fill-opacity=0 stroke-opacity=1 fill=none stroke-width=1></ellipse><ellipse cx=10.5 cy=11.5 rx=5 ry=5 fill-opacity=0 stroke-opacity=1 fill=none stroke-width=1></ellipse><ellipse cx=10.5 cy=11.5 rx=3 ry=3 fill-opacity=0 stroke-opacity=1 fill=none stroke-width=1>');
+const Vc = () => Hc();
 var Gc = /* @__PURE__ */ y('<svg class=icon-overlay viewBox="0 0 22 22"><path d=M3,7.32468C5.90649,3.3893050000000002,11.49833,2.81306,14.6674,6.31944C14.9056,6.1554199999999994,15.192,6.05979,15.5,6.05979C15.845,6.05979,16.1628,6.17974,16.4162,6.381349999999999L18.4509,4.23827L19,4.816615L16.8945,7.03429C16.962600000000002,7.21075,17,7.40319,17,7.60463C17,8.45782,16.328400000000002,9.14947,15.5,9.14947C14.6716,9.14947,14,8.45782,14,7.60463C14,7.36402,14.0534,7.13625,14.1487,6.93322C11.32695,3.748365,6.25159,4.253956,3.612785,7.82695L3,7.32468ZM14.09,15.4717C15.7427,13.78985,16.244500000000002,11.524740000000001,15.5633,9.30134L15.5618,9.30134L16.3012,9.0502C17.072400000000002,11.56646,16.497700000000002,14.158,14.6282,16.0599C12.28737,18.442,8.62386,18.6988,6.41348,16.4501C4.5526,14.5572,4.52076,11.19671,6.36766,9.3177C7.89069,7.76754,10.07544,7.706189999999999,11.56741,9.22363C11.95453,9.61742,12.24817,10.08363,12.43369,10.57677L14.1451,8.77421L14.6942,9.35256L12.64982,11.50582C12.65827,11.59712,12.66295,11.68839,12.66378,11.77936C12.87398,12.04523,13,12.38451,13,12.7541C13,13.60729,12.32843,14.2989,11.5,14.2989C10.67157,14.2989,10,13.60729,10,12.7541C10,11.90091,10.67157,11.20926,11.5,11.20926C11.60387,11.20926,11.70528,11.220130000000001,11.8032,11.240829999999999L11.81763,11.22564C11.69858,10.71874,11.42858,10.21929,11.0284,9.81179C9.844000000000001,8.60765,8.136890000000001,8.65592,6.90822,9.90586C5.37975,11.460930000000001,5.40693,14.288,6.95404,15.8619C8.84598,17.7867,12.03496,17.5626,14.09,15.4717Z stroke-opacity=0 stroke=none>');
 const Xc = () => Gc();
 var Jc = /* @__PURE__ */ y('<svg class=icon-overlay viewBox="0 0 22 22"><path d=M4,17.0854L4,3.5C4,3.223858,4.22386,3,4.5,3C4.77614,3,5,3.223858,5,3.5L5,10L7.57584,10L9.8127,4.46359C9.91614,4.20756,10.20756,4.08386,10.46359,4.1873000000000005C10.71963,4.29075,10.84333,4.58216,10.73988,4.8382000000000005L8.65438,10L11.08535,10C11.29127,9.4174,11.84689,9,12.5,9C12.65154,9,12.79784,9.02247,12.93573,9.06427L16.6464,5.35355C16.8417,5.15829,17.1583,5.15829,17.3536,5.35355C17.5488,5.54882,17.5488,5.8654,17.3536,6.06066L13.7475,9.66675C13.907,9.90508,14,10.19168,14,10.5C14,11.15311,13.5826,11.70873,13,11.91465L13,14.3638L18.3714,12.1936C18.6274,12.09015,18.918799999999997,12.21385,19.0222,12.46989C19.1257,12.72592,19.002,13.0173,18.746000000000002,13.1208L13,15.4423L13,18L19.5,18C19.7761,18,20,18.2239,20,18.5C20,18.7761,19.7761,19,19.5,19L5.91465,19C5.70873,19.5826,5.15311,20,4.5,20C3.671573,20,3,19.3284,3,18.5C3,17.846899999999998,3.417404,17.2913,4,17.0854ZM6.3729499999999994,17.0413L12,14.7678L12,11.91465C11.88136,11.87271,11.76956,11.81627,11.66675,11.74746L6.3729499999999994,17.0413ZM12,15.8463L6.6694700000000005,18L12,18L12,15.8463ZM6.38629,15.6137L8.250350000000001,11L11,11L6.38629,15.6137ZM5,11L7.17182,11L5,16.3754L5,11Z stroke-opacity=0 fill-rule=evenodd fill-opacity=1>');
@@ -2688,12 +2688,12 @@ const bl = () => Ll();
 var $l = /* @__PURE__ */ y('<svg viewBox="0 0 22 22"><path d=M4.727219638671875,8.007996215820313L9.973849638671876,2.7629472158203123C10.167279638671875,2.5696791158203123,10.480729638671875,2.5696791158203123,10.674169638671875,2.7629472158203123L13.223329638671874,5.311756215820313C13.416929638671874,5.505236215820313,13.416929638671874,5.8189862158203125,13.223329638671874,6.012466215820313L7.977129638671875,11.257906215820313C7.379859638671875,11.855176215820313,7.407609638671875,12.909396215820312,8.033809638671876,13.535596215820313C8.660409638671876,14.162596215820313,9.713849638671874,14.189996215820312,10.311129638671876,13.591896215820313L15.556929638671875,8.346066215820311C15.750429638671875,8.152526215820313,16.064229638671875,8.152526215820313,16.257629638671872,8.346066215820311L18.806529638671876,10.895266215820312C19.000029638671876,11.088746215820313,19.000029638671876,11.402496215820312,18.806529638671876,11.595976215820313L13.560629638671875,16.841796215820313C11.165619638671876,19.237196215820312,7.197149638671875,19.19919621582031,4.783499638671875,16.785496215820313C2.3698426386718747,14.371896215820312,2.331397638671875,10.403416215820313,4.727219638671875,8.007996215820313ZM12.172299638671875,5.662106215820312L10.323809638671875,3.8136162158203124L5.4287196386718755,8.709096215820313C3.422893638671875,10.714536215820312,3.4549956386718748,14.055196215820313,5.484999638671875,16.08479621582031C7.514609638671875,18.114796215820313,10.855289638671875,18.146496215820314,12.860719638671876,16.141096215820312L15.465629638671874,13.535796215820312L14.090929638671875,12.160756215820312L14.791629638671875,11.460436215820312L16.166229638671876,12.834996215820313L17.755829638671877,11.245226215820313L15.907729638671874,9.396736215820312L11.011839638671875,14.292596215820312C10.042809638671875,15.262396215820312,8.418249638671874,15.243796215820312,7.406019638671875,14.306496215820312L7.333099638671875,14.236296215820312C6.327599638671876,13.230796215820313,6.284009638671876,11.550396215820312,7.276419638671875,10.557586215820312L9.882199638671874,7.952026215820313L8.501079638671875,6.570906215820313L9.201789638671876,5.870186215820313L10.582939638671874,7.251336215820312L12.172299638671875,5.662106215820312Z stroke-opacity=0 fill-rule=evenodd fill-opacity=1>');
 const xl = (e) => (() => {
   var t = $l();
-  return H(t, "class", `icon-overlay ${e ?? ""}`), t;
+  return V(t, "class", `icon-overlay ${e ?? ""}`), t;
 })();
 var Al = /* @__PURE__ */ y('<svg viewBox="0 0 22 22"><defs><clipPath id=master_svg0_151_615><rect x=0 y=0 width=22 height=22 rx=0></rect></clipPath></defs><g clip-path=url(#master_svg0_151_615)><path d=M19.672,3.0673368C19.4417,2.9354008,19.1463,3.00292252,18.9994,3.2210900000000002L17.4588,5.50622L16.743299999999998,3.781253L13.9915,7.4662L13.9618,7.51108C13.8339,7.72862,13.8936,8.005659999999999,14.1004,8.15391L14.1462,8.183430000000001C14.3683,8.308720000000001,14.6511,8.25001,14.8022,8.047229999999999L16.4907,5.78571L17.246299999999998,7.60713L19.8374,3.7635389999999997L19.8651,3.717088C19.9871,3.484615,19.9023,3.199273,19.672,3.0673368ZM4.79974,8.462530000000001L10.117740000000001,3.252975C10.31381,3.0610145,10.63152,3.0610145,10.82759,3.252975L13.4115,5.78453C13.6076,5.976710000000001,13.6076,6.28833,13.4115,6.4805L8.093869999999999,11.69045C7.48847,12.28368,7.51659,13.3308,8.151309999999999,13.9528C8.786439999999999,14.5755,9.85421,14.6027,10.45961,14.0087L15.7768,8.79831C15.9729,8.60609,16.2909,8.60609,16.487099999999998,8.79831L19.0705,11.33026C19.2667,11.52244,19.2667,11.83406,19.0705,12.02623L13.7533,17.2366C11.32572,19.6158,7.30328,19.578,4.85679,17.1807C2.410298,14.7834,2.371331,10.84174,4.79974,8.462530000000001ZM12.3461,6.1325199999999995L10.47246,4.29654L5.51079,9.15889C3.477674,11.15076,3.510214,14.4688,5.56784,16.4847C7.62506,18.500999999999998,11.01117,18.5325,13.0439,16.540599999999998L15.6842,13.9529L14.2908,12.58718L15.0011,11.89161L16.394399999999997,13.2569L18.0056,11.67786L16.1323,9.84188L11.16985,14.7046C10.18764,15.6679,8.540980000000001,15.6494,7.51498,14.7184L7.44107,14.6487C6.4219,13.65,6.37771,11.98096,7.38362,10.994869999999999L10.02485,8.40693L8.624939999999999,7.03516L9.335180000000001,6.33919L10.73512,7.71099L12.3461,6.1325199999999995Z stroke-opacity=0 fill-rule=evenodd fill-opacity=1>');
 const kl = (e) => (() => {
   var t = Al();
-  return H(t, "class", `icon-overlay ${e ?? ""}`), t;
+  return V(t, "class", `icon-overlay ${e ?? ""}`), t;
 })();
 var wl = /* @__PURE__ */ y('<svg class=icon-overlay viewBox="0 0 22 22"><path d=M11,17C5.80945,17,3.667717,12.85,3.113386,11.575C2.9622047,11.2,2.9622047,10.8,3.113386,10.425C3.667717,9.15,5.80945,5,11,5C16.165399999999998,5,18.3323,9.15,18.8866,10.425C19.0378,10.8,19.0378,11.2,18.8866,11.575C18.3323,12.85,16.165399999999998,17,11,17ZM4.04567,10.8C3.995276,10.925,3.995276,11.05,4.04567,11.175C4.52441,12.325,6.43937,16,11,16C15.5606,16,17.4756,12.325,17.9543,11.2C18.0047,11.075,18.0047,10.95,17.9543,10.825C17.4756,9.675,15.5606,6,11,6C6.43937,6,4.52441,9.675,4.04567,10.8ZM11,13.5C9.61417,13.5,8.480319999999999,12.375,8.480319999999999,11C8.480319999999999,9.625,9.61417,8.5,11,8.5C12.38583,8.5,13.5197,9.625,13.5197,11C13.5197,12.375,12.38583,13.5,11,13.5ZM11,9.5C10.1685,9.5,9.48819,10.175,9.48819,11C9.48819,11.825,10.1685,12.5,11,12.5C11.8315,12.5,12.51181,11.825,12.51181,11C12.51181,10.175,11.8315,9.5,11,9.5Z stroke-opacity=0 fill-opacity=1>');
 const Ml = () => wl();
@@ -2720,7 +2720,7 @@ const El = () => Ol(), Nl = {
   parallelStraightLine: Qc,
   fibonacciLine: zc,
   fibonacciSegment: Yc,
-  fibonacciCircle: Hc,
+  fibonacciCircle: Vc,
   fibonacciSpiral: Xc,
   fibonacciSpeedResistanceFan: Wc,
   fibonacciExtension: el,
@@ -2827,10 +2827,10 @@ const _9 = "drawing_tools", Yl = (e) => {
     icon: C(),
     list: Ql(e.locale),
     setter: l
-  }]), I = j(() => Rl(e.locale));
+  }]), D = j(() => Rl(e.locale));
   return (() => {
-    var V = zl(), D = V.firstChild, S = D.nextSibling, P = S.firstChild, J = P.nextSibling, l0 = J.firstChild, S1 = S.nextSibling, T1 = S1.firstChild, l1 = S1.nextSibling, B1 = l1.firstChild, O1 = l1.nextSibling, E1 = O1.nextSibling, N1 = E1.firstChild;
-    return d(V, () => x().map((A) => (() => {
+    var H = zl(), P = H.firstChild, S = P.nextSibling, B = S.firstChild, J = B.nextSibling, l0 = J.firstChild, S1 = S.nextSibling, T1 = S1.firstChild, l1 = S1.nextSibling, O1 = l1.firstChild, E1 = l1.nextSibling, N1 = E1.nextSibling, K1 = N1.firstChild;
+    return d(H, () => x().map((A) => (() => {
       var z = Ul(), W = z.firstChild, s1 = W.nextSibling, y1 = s1.firstChild;
       return z.addEventListener("blur", () => {
         $("");
@@ -2869,13 +2869,13 @@ const _9 = "drawing_tools", Yl = (e) => {
             })());
           }
         });
-      })(), null), R(() => H(y1, "class", A.key === M() ? "rotate" : "")), z;
-    })()), D), S.addEventListener("blur", () => {
+      })(), null), R(() => V(y1, "class", A.key === M() ? "rotate" : "")), z;
+    })()), P), S.addEventListener("blur", () => {
       $("");
-    }), P.$$click = () => {
+    }), B.$$click = () => {
       let A = f();
       b() !== "normal" && (A = "normal"), k(A), e.onModeChange(A);
-    }, d(P, (() => {
+    }, d(B, (() => {
       var A = j(() => f() === "weak_magnet");
       return () => A() ? (() => {
         var z = j(() => b() === "weak_magnet");
@@ -2901,7 +2901,7 @@ const _9 = "drawing_tools", Yl = (e) => {
       return () => A() && h(q1, {
         class: "list",
         get children() {
-          return I().map((z) => (() => {
+          return D().map((z) => (() => {
             var W = v9(), s1 = W.firstChild;
             return W.$$click = () => {
               p(z.key), k(z.key), e.onModeChange(z.key), $("");
@@ -2923,26 +2923,26 @@ const _9 = "drawing_tools", Yl = (e) => {
       }) : h(X, {
         name: "unlock"
       });
-    })()), B1.$$click = () => {
+    })()), O1.$$click = () => {
       const A = !w();
       Q(A), e.onVisibleChange(A);
-    }, d(B1, (() => {
+    }, d(O1, (() => {
       var A = j(() => !!w());
       return () => A() ? h(X, {
         name: "visible"
       }) : h(X, {
         name: "invisible"
       });
-    })()), N1.$$click = () => {
+    })()), K1.$$click = () => {
       e.onRemoveClick(_9);
-    }, d(N1, h(X, {
+    }, d(K1, h(X, {
       name: "remove"
-    })), R(() => H(l0, "class", M() === "mode" ? "rotate" : "")), V;
+    })), R(() => V(l0, "class", M() === "mode" ? "rotate" : "")), H;
   })();
 };
 e1(["click"]);
 var L9 = /* @__PURE__ */ y("<li class=title>"), b9 = /* @__PURE__ */ y("<li class=row>");
-const Vl = (e) => h(M1, {
+const Hl = (e) => h(M1, {
   get title() {
     return u("indicator", e.locale);
   },
@@ -3041,7 +3041,7 @@ function $9(e, t) {
   }
   return e;
 }
-function Hl(e) {
+function Vl(e) {
   return [
     { key: "Etc/UTC", text: u("utc", e) },
     { key: "Pacific/Honolulu", text: u("honolulu", e) },
@@ -3064,7 +3064,7 @@ function Hl(e) {
   ];
 }
 const Gl = (e) => {
-  const [t, n] = L(e.timezone), r = j(() => Hl(e.locale));
+  const [t, n] = L(e.timezone), r = j(() => Vl(e.locale));
   return h(M1, {
     get title() {
       return u("timezone", e.locale);
@@ -3166,7 +3166,7 @@ const Wl = (e) => {
   const s = (o, i) => {
     const c = {};
     p0(c, o.key, i);
-    const C = E.clone(t());
+    const C = I.clone(t());
     p0(C, o.key, i), n(C), a(r().map((l) => ({
       ...l
     }))), e.onChange(c);
@@ -3195,7 +3195,7 @@ const Wl = (e) => {
         },
         children: (i) => {
           let c;
-          const C = E.formatValue(t(), i.key);
+          const C = I.formatValue(t(), i.key);
           switch (i.component) {
             case "select": {
               c = h(l5, {
@@ -3256,7 +3256,7 @@ const eu = (e) => h(M1, {
   },
   get children() {
     var t = ql();
-    return R(() => H(t, "src", e.url)), t;
+    return R(() => V(t, "src", e.url)), t;
   }
 }), tu = {
   AO: [
@@ -3387,7 +3387,7 @@ const eu = (e) => h(M1, {
 };
 var nu = /* @__PURE__ */ y("<div class=tradingsoccerwrap-indicator-setting-modal-content>"), ru = /* @__PURE__ */ y("<span>");
 const au = (e) => {
-  const [t, n] = L(E.clone(e.params.calcParams)), r = (a) => tu[a];
+  const [t, n] = L(I.clone(e.params.calcParams)), r = (a) => tu[a];
   return h(M1, {
     get title() {
       return e.params.indicatorName;
@@ -3399,8 +3399,8 @@ const au = (e) => {
         children: u("confirm", e.locale),
         onClick: () => {
           const a = r(e.params.indicatorName), s = [];
-          E.clone(t()).forEach((o, i) => {
-            !E.isValid(o) || o === "" ? "default" in a[i] && s.push(a[i].default) : s.push(o);
+          I.clone(t()).forEach((o, i) => {
+            !I.isValid(o) || o === "" ? "default" in a[i] && s.push(a[i].default) : s.push(o);
           }), e.onConfirm(s), e.onClose();
         }
       }];
@@ -3427,7 +3427,7 @@ const au = (e) => {
           return s.min;
         },
         onChange: (i) => {
-          const c = E.clone(t());
+          const c = I.clone(t());
           c[o] = i, n(c);
         }
       })])), a;
@@ -3479,9 +3479,9 @@ const cu = (e) => {
             },
             get children() {
               var c = su();
-              return R(() => H(c, "src", a.logo)), c;
+              return R(() => V(c, "src", a.logo)), c;
             }
-          }), i), d(i, () => a.shortName ?? a.ticker, null), d(i, () => `${a.name ? `(${a.name})` : ""}`, null), d(s, () => a.exchange ?? "", null), R(() => H(i, "title", a.name ?? "")), s;
+          }), i), d(i, () => a.shortName ?? a.ticker, null), d(i, () => `${a.name ? `(${a.name})` : ""}`, null), d(s, () => a.exchange ?? "", null), R(() => V(i, "title", a.name ?? "")), s;
         })()
       })];
     }
@@ -3511,10 +3511,10 @@ function Q1(e, t, n, r) {
 }
 const Cu = (e) => {
   let t, n = null, r, a = !1;
-  const [s, o] = L(e.theme), [i, c] = L(e.styles), [C, l] = L(e.locale), [f, p] = L(e.symbol), [b, k] = L(e.period), [Z, K] = L(!1), [w, Q] = L([...e.mainIndicators]), [M, $] = L({}), [x, I] = L(!1), [V, D] = L({
+  const [s, o] = L(e.theme), [i, c] = L(e.styles), [C, l] = L(e.locale), [f, p] = L(e.symbol), [b, k] = L(e.period), [Z, K] = L(!1), [w, Q] = L([...e.mainIndicators]), [M, $] = L({}), [x, D] = L(!1), [H, P] = L({
     key: e.timezone,
     text: $9(e.timezone, e.locale)
-  }), [S, P] = L(!1), [J, l0] = L(), [S1, T1] = L(""), [l1, B1] = L(e.drawingBarVisible), [O1, E1] = L(!1), [N1, A] = L(!1), [z, W] = L({
+  }), [S, B] = L(!1), [J, l0] = L(), [S1, T1] = L(""), [l1, O1] = L(e.drawingBarVisible), [E1, N1] = L(!1), [K1, A] = L(!1), [z, W] = L({
     visible: !1,
     indicatorName: "",
     paneId: "",
@@ -3528,12 +3528,12 @@ const Cu = (e) => {
     setLocale: l,
     getLocale: () => C(),
     setTimezone: (m) => {
-      D({
+      P({
         key: m,
         text: $9(e.timezone, C())
       });
     },
-    getTimezone: () => V().key,
+    getTimezone: () => H().key,
     setSymbol: p,
     getSymbol: () => f(),
     setPeriod: k,
@@ -3542,71 +3542,77 @@ const Cu = (e) => {
   const s1 = () => {
     n == null || n.resize();
   }, y1 = (m, g, v) => {
-    let _ = g, N = _;
+    let _ = g, O = _;
     switch (m.timespan) {
+      case "second": {
+        _ = _ - _ % 1e3, O = _ - v * m.multiplier * 1e3;
+        break;
+      }
       case "minute": {
-        _ = _ - _ % (60 * 1e3), N = _ - v * m.multiplier * 60 * 1e3;
+        _ = _ - _ % (60 * 1e3), O = _ - v * m.multiplier * 60 * 1e3;
         break;
       }
       case "hour": {
-        _ = _ - _ % (60 * 60 * 1e3), N = _ - v * m.multiplier * 60 * 60 * 1e3;
+        _ = _ - _ % (60 * 60 * 1e3), O = _ - v * m.multiplier * 60 * 60 * 1e3;
         break;
       }
       case "day": {
-        _ = _ - _ % (60 * 60 * 1e3), N = _ - v * m.multiplier * 24 * 60 * 60 * 1e3;
+        _ = _ - _ % (60 * 60 * 1e3), O = _ - v * m.multiplier * 24 * 60 * 60 * 1e3;
         break;
       }
       case "week": {
         const G = new Date(_).getDay(), u1 = G === 0 ? 6 : G - 1;
         _ = _ - u1 * 60 * 60 * 24;
         const m1 = new Date(_);
-        _ = (/* @__PURE__ */ new Date(`${m1.getFullYear()}-${m1.getMonth() + 1}-${m1.getDate()}`)).getTime(), N = v * m.multiplier * 7 * 24 * 60 * 60 * 1e3;
+        _ = (/* @__PURE__ */ new Date(`${m1.getFullYear()}-${m1.getMonth() + 1}-${m1.getDate()}`)).getTime(), O = v * m.multiplier * 7 * 24 * 60 * 60 * 1e3;
         break;
       }
       case "month": {
         const n1 = new Date(_), G = n1.getFullYear(), u1 = n1.getMonth() + 1;
-        _ = (/* @__PURE__ */ new Date(`${G}-${u1}-01`)).getTime(), N = v * m.multiplier * 30 * 24 * 60 * 60 * 1e3;
-        const m1 = new Date(N);
-        N = (/* @__PURE__ */ new Date(`${m1.getFullYear()}-${m1.getMonth() + 1}-01`)).getTime();
+        _ = (/* @__PURE__ */ new Date(`${G}-${u1}-01`)).getTime(), O = v * m.multiplier * 30 * 24 * 60 * 60 * 1e3;
+        const m1 = new Date(O);
+        O = (/* @__PURE__ */ new Date(`${m1.getFullYear()}-${m1.getMonth() + 1}-01`)).getTime();
         break;
       }
       case "year": {
         const G = new Date(_).getFullYear();
-        _ = (/* @__PURE__ */ new Date(`${G}-01-01`)).getTime(), N = v * m.multiplier * 365 * 24 * 60 * 60 * 1e3;
-        const u1 = new Date(N);
-        N = (/* @__PURE__ */ new Date(`${u1.getFullYear()}-01-01`)).getTime();
+        _ = (/* @__PURE__ */ new Date(`${G}-01-01`)).getTime(), O = v * m.multiplier * 365 * 24 * 60 * 60 * 1e3;
+        const u1 = new Date(O);
+        O = (/* @__PURE__ */ new Date(`${u1.getFullYear()}-01-01`)).getTime();
         break;
       }
     }
-    return [N, _];
+    return [O, _];
   };
   return M9(() => {
     if (window.addEventListener("resize", s1), n = y5(t, {
       customApi: {
-        formatDate: (g, v, _, N) => {
+        formatDate: (g, v, _, O) => {
           switch (b().timespan) {
+            case "second":
+              return O === I1.XAxis ? I.formatDate(g, v, "HH:mm:ss") : I.formatDate(g, v, "YYYY-MM-DD HH:mm:ss");
             case "minute":
-              return N === K1.XAxis ? E.formatDate(g, v, "HH:mm") : E.formatDate(g, v, "YYYY-MM-DD HH:mm");
+              return O === I1.XAxis ? I.formatDate(g, v, "HH:mm") : I.formatDate(g, v, "YYYY-MM-DD HH:mm");
             case "hour":
-              return N === K1.XAxis ? E.formatDate(g, v, "MM-DD HH:mm") : E.formatDate(g, v, "YYYY-MM-DD HH:mm");
+              return O === I1.XAxis ? I.formatDate(g, v, "MM-DD HH:mm") : I.formatDate(g, v, "YYYY-MM-DD HH:mm");
             case "day":
             case "week":
-              return E.formatDate(g, v, "YYYY-MM-DD");
+              return I.formatDate(g, v, "YYYY-MM-DD");
             case "month":
-              return N === K1.XAxis ? E.formatDate(g, v, "YYYY-MM") : E.formatDate(g, v, "YYYY-MM-DD");
+              return O === I1.XAxis ? I.formatDate(g, v, "YYYY-MM") : I.formatDate(g, v, "YYYY-MM-DD");
             case "year":
-              return N === K1.XAxis ? E.formatDate(g, v, "YYYY") : E.formatDate(g, v, "YYYY-MM-DD");
+              return O === I1.XAxis ? I.formatDate(g, v, "YYYY") : I.formatDate(g, v, "YYYY-MM-DD");
           }
-          return E.formatDate(g, v, "YYYY-MM-DD HH:mm");
+          return I.formatDate(g, v, "YYYY-MM-DD HH:mm");
         }
       }
     }), n) {
       const g = n.getDom("candle_pane", K0.Main);
       if (g) {
         let _ = document.createElement("div");
-        if (_.className = "tradingsoccerwrap-watermark", E.isString(e.watermark)) {
-          const N = e.watermark.replace(/(^\s*)|(\s*$)/g, "");
-          _.innerHTML = N;
+        if (_.className = "tradingsoccerwrap-watermark", I.isString(e.watermark)) {
+          const O = e.watermark.replace(/(^\s*)|(\s*$)/g, "");
+          _.innerHTML = O;
         } else
           _.appendChild(e.watermark);
         g.appendChild(_);
@@ -3625,7 +3631,7 @@ const Cu = (e) => {
       v && (m[g] = v);
     }), $(m), n == null || n.loadMore((g) => {
       a = !0, (async () => {
-        const _ = b(), [N] = y1(_, g, 1), [n1] = y1(_, N, 500), G = await e.datafeed.getHistoryKLineData(f(), _, n1, N);
+        const _ = b(), [O] = y1(_, g, 1), [n1] = y1(_, O, 500), G = await e.datafeed.getHistoryKLineData(f(), _, n1, O);
         n == null || n.applyMoreData(G, G.length > 0), a = !1;
       })();
     }), n == null || n.subscribeAction(m5.OnTooltipIconClick, (g) => {
@@ -3677,7 +3683,7 @@ const Cu = (e) => {
       m && e.datafeed.unsubscribe(m.symbol, m.period);
       const g = f(), v = b();
       return a = !0, A(!0), (async () => {
-        const [N] = y1(v, (/* @__PURE__ */ new Date()).getTime(), 1), [n1] = y1(v, 1e12, 1), G = await e.datafeed.getHistoryKLineData(g, v, n1, N);
+        const [O] = y1(v, (/* @__PURE__ */ new Date()).getTime(), 1), [n1] = y1(v, 1e12, 1), G = await e.datafeed.getHistoryKLineData(g, v, n1, O);
         n == null || n.applyNewData(G, G.length > 0), e.datafeed.subscribe(g, v, (u1) => {
           n == null || n.updateData(u1);
         }), a = !1, A(!1);
@@ -3773,12 +3779,12 @@ const Cu = (e) => {
   }), r1(() => {
     n == null || n.setLocale(C());
   }), r1(() => {
-    n == null || n.setTimezone(V().key);
+    n == null || n.setTimezone(H().key);
   }), r1(() => {
     i() && (n == null || n.setStyles(i()), l0(kr(n.getStyles())));
   }), [lu(), h(U, {
     get when() {
-      return O1();
+      return E1();
     },
     get children() {
       return h(cu, {
@@ -3792,7 +3798,7 @@ const Cu = (e) => {
           p(m);
         },
         onClose: () => {
-          E1(!1);
+          N1(!1);
         }
       });
     }
@@ -3801,7 +3807,7 @@ const Cu = (e) => {
       return Z();
     },
     get children() {
-      return h(Vl, {
+      return h(Hl, {
         get locale() {
           return e.locale;
         },
@@ -3843,12 +3849,12 @@ const Cu = (e) => {
           return e.locale;
         },
         get timezone() {
-          return V();
+          return H();
         },
         onClose: () => {
-          I(!1);
+          D(!1);
         },
-        onConfirm: D
+        onConfirm: P
       });
     }
   }), h(U, {
@@ -3861,10 +3867,10 @@ const Cu = (e) => {
           return e.locale;
         },
         get currentStyles() {
-          return E.clone(n.getStyles());
+          return I.clone(n.getStyles());
         },
         onClose: () => {
-          P(!1);
+          B(!1);
         },
         onChange: (m) => {
           n == null || n.setStyles(m);
@@ -3873,7 +3879,7 @@ const Cu = (e) => {
           const g = {};
           m.forEach((v) => {
             const _ = v.key;
-            p0(g, _, E.formatValue(J(), _));
+            p0(g, _, I.formatValue(J(), _));
           }), n == null || n.setStyles(g);
         }
       });
@@ -3942,22 +3948,22 @@ const Cu = (e) => {
     },
     onMenuClick: async () => {
       try {
-        await Z5(() => B1(!l1())), n == null || n.resize();
+        await Z5(() => O1(!l1())), n == null || n.resize();
       } catch {
       }
     },
     onSymbolClick: () => {
-      E1(!O1());
+      N1(!E1());
     },
     onPeriodChange: k,
     onIndicatorClick: () => {
       K((m) => !m);
     },
     onTimezoneClick: () => {
-      I((m) => !m);
+      D((m) => !m);
     },
     onSettingClick: () => {
-      P((m) => !m);
+      B((m) => !m);
     },
     onScreenshotClick: () => {
       if (n) {
@@ -3969,7 +3975,7 @@ const Cu = (e) => {
     var m = uu(), g = m.firstChild;
     d(m, h(U, {
       get when() {
-        return N1();
+        return K1();
       },
       get children() {
         return h(c5, {});
@@ -4010,7 +4016,7 @@ const Cu = (e) => {
       }
     }), g);
     var v = t;
-    return typeof v == "function" ? A0(v, g) : t = g, R(() => H(g, "data-drawing-bar-visible", l1())), m;
+    return typeof v == "function" ? A0(v, g) : t = g, R(() => V(g, "data-drawing-bar-visible", l1())), m;
   })()];
 };
 var fu = /* @__PURE__ */ y('<svg class=logo viewBox="0 0 80 92"><path d=M28.148808359375,51.7280513671875L22.963588359375,51.7280513671875C21.572648359375002,51.7280513671875,20.445068359375,52.6220613671875,20.445068359375,53.7248813671875L20.445068359375,72.3979013671875C20.445068359375,73.5007013671875,21.572648359375002,74.39470136718751,22.963588359375,74.39470136718751L33.926568359375,74.39470136718751C35.317468359375,74.39470136718751,36.445068359375,73.5007013671875,36.445068359375,72.3979013671875L36.445068359375,53.7248813671875C36.445068359375,52.6220613671875,35.317468359375,51.7280513671875,33.926568359375,51.7280513671875L28.741398359374998,51.7280513671875L28.741398359374998,46.2963223671875C28.741398359374998,46.1665793671875,28.608748359375,46.0614013671875,28.445108359375,46.0614013671875C28.281468359375,46.0614013671875,28.148808359375,46.1665793671875,28.148808359375,46.2963223671875L28.148808359375,51.7280513671875ZM28.741398359374998,74.3948013671875L28.741398359374998,79.82650136718749C28.741398359374998,79.9563013671875,28.608748359375,80.0614013671875,28.445108359375,80.0614013671875C28.281468359375,80.0614013671875,28.148808359375,79.9563013671875,28.148808359375,79.82650136718749L28.148808359375,74.3948013671875L28.741398359374998,74.3948013671875Z></path><path d=M51.148808359374996,44.7280513671875L45.963588359375,44.7280513671875C44.572648359375,44.7280513671875,43.445068359375,45.6220613671875,43.445068359375,46.7248813671875L43.445068359375,65.3979013671875C43.445068359375,66.5007013671875,44.572648359375,67.39470136718751,45.963588359375,67.39470136718751L56.926568359375,67.39470136718751C58.317468359375,67.39470136718751,59.445068359375,66.5007013671875,59.445068359375,65.3979013671875L59.445068359375,46.7248813671875C59.445068359375,45.6220613671875,58.317468359375,44.7280513671875,56.926568359375,44.7280513671875L51.741398359375,44.7280513671875L51.741398359375,39.2963223671875C51.741398359375,39.1665793671875,51.608748359375,39.0614013671875,51.445108359375,39.0614013671875C51.281468359375,39.0614013671875,51.148808359374996,39.1665793671875,51.148808359374996,39.2963223671875L51.148808359374996,44.7280513671875ZM51.741398359375,67.3948013671875L51.741398359375,72.82650136718749C51.741398359375,72.9563013671875,51.608748359375,73.0614013671875,51.445108359375,73.0614013671875C51.281468359375,73.0614013671875,51.148808359374996,72.9563013671875,51.148808359374996,72.82650136718749L51.148808359374996,67.3948013671875L51.741398359375,67.3948013671875Z></path><path d=M17.7274,90.6541C17.5901,90.6541,17.4517,90.6436,17.3121,90.6225C9.93219,89.5095,4.80718,86.7136,2.07787,82.3084C-1.1223,77.1437,0.241766,71.6314,0.56829,70.5137C5.37624,46.647,15.0785,38.4945,21.5025,33.0957C22.9683,31.8633,24.2342,30.7995,25.1676,29.7672C25.4105,29.4984,25.6051,29.2154,25.7556,28.9202C24.7465,29.2231,24.1971,29.4326,24.1703,29.4429C22.908,29.9368,21.4777,29.3247,20.9761,28.076C20.4756,26.8272,21.0897,25.4146,22.352,24.9172C22.5042,24.8571,23.5312,24.4607,25.3073,23.9616C24.087,21.4425,21.7693,18.7949,19.7125,16.6431L19.2819,16.1902C16.2438,12.9776,14.6017,4.80159,14.3036,3.19471C14.1306,2.26212,14.4636,1.30796,15.1814,0.679657C15.8995,0.0512175,16.8976,-0.159672,17.8125,0.123747C22.7731,1.66274,24.2638,1.81255,27.2321,2.11098C28.7357,2.26195,29.83,3.59029,29.6762,5.07662C29.5236,6.56295,28.182,7.64786,26.6784,7.49454C24.4992,7.27569,22.9517,7.09896,20.724,6.56646C21.4493,9.09088,22.3803,11.5427,23.2771,12.4919L23.6876,12.9237C25.3757,14.69,28.9691,18.45,30.7016,22.7299C35.0392,21.9433,40.8791,21.3359,47.7817,21.7249C48.2004,20.7386,48.8054,19.7953,49.5907,18.9135C49.7137,18.7754,49.8498,18.6502,49.9988,18.539C53.6142,15.8508,57.5491,12.857,59.7803,11.0758C58.1028,11.2502,56.1034,11.0278,53.9124,9.70882C53.2439,9.30622,52.5992,8.89427,51.9662,8.48933C48.4668,6.25164,46.497,5.12109,43.4234,5.94853C41.9647,6.34058,40.4622,5.48975,40.0659,4.04789C39.6695,2.60604,40.5296,1.11853,41.9871,0.726471C47.5602,-0.773825,51.4796,1.73271,54.9364,3.9434L54.9364,3.9434C55.5284,4.32176,56.1318,4.70797,56.7564,5.08482C58.3843,6.06556,59.4858,5.76127,61.2899,5.13865C62.3511,4.77234,63.5567,4.35687,64.8675,4.53476C66.3321,4.73254,67.4406,5.56933,67.9103,6.83096C68.7444,9.07333,67.1035,11.5533,65.5797,13.2374C64.6729,14.2394,60.0845,17.7606,56.4519,20.4957C56.9477,20.3369,57.4767,20.2511,58.026,20.2511C59.4281,20.2511,60.6982,20.8102,61.621,21.7153C65.4948,20.6901,67.87,17.9563,67.9033,17.9175C68.78,16.8888,70.3322,16.7577,71.3721,17.6226C72.412,18.4886,72.5457,20.0253,71.6702,21.054C71.5221,21.2286,69.5063,23.5492,66.0787,25.233C69.5399,26.8822,72.9993,29.682,74.1841,34.4145C74.5106,35.7206,73.7062,37.0407,72.3859,37.3638C72.1871,37.4117,71.9884,37.4351,71.792,37.4351C70.687,37.4351,69.6826,36.6932,69.4046,35.5848C68.4378,31.7217,64.8144,29.7431,61.7619,28.7456C60.8298,29.7349,59.5009,30.3535,58.026,30.3535C55.8642,30.3535,54.0162,29.0245,53.2713,27.1474C53.2022,27.138,53.1331,27.1287,53.0642,27.1195C54.232,29.5936,57.0851,31.9259,58.1868,32.665C58.3157,32.7516,58.4423,32.8523,58.5547,32.9599C66.5865,40.6151,72.4887,48.8133,76.0971,57.3287C76.6815,58.7074,76.0249,60.2932,74.6313,60.8702C74.2976,61.01,73.9388,61.082,73.576,61.082C72.5065,61.082,71.4914,60.4582,71.0525,59.4213C67.7577,51.6455,62.331,44.1074,54.9203,37.0116C53.6073,36.1009,48.0984,31.9917,47.2065,26.583C40.9421,26.2679,35.6187,26.8278,31.6725,27.5336C31.6197,29.527,30.9225,31.5172,29.2456,33.3731C28.0614,34.6827,26.5968,35.915,25.0446,37.2188C21.9414,39.8269,18.2648,42.9169,14.8104,48.1192C11.356,53.3215,8.12389,60.6361,5.9098,71.6934C5.88732,71.8035,5.85893,71.9123,5.82344,72.0188C5.81634,72.041,4.57886,76.0413,6.77344,79.5289C8.6332,82.4828,12.4557,84.4139,18.1367,85.2705C19.6297,85.4953,20.6566,86.8762,20.4295,88.3532C20.2213,89.6944,19.0559,90.6541,17.7274,90.6541ZM35.1195,7.03101C33.3502,7.03101,31.9158,5.61208,31.9158,3.86173C31.9158,2.11139,33.3502,0.69245,35.1195,0.69245C36.8889,0.69245,38.3233,2.11139,38.3233,3.86173C38.3233,5.61208,36.8889,7.03101,35.1195,7.03101ZM57.6848,23.1892L58.414,24.4754C58.8984,24.3623,59.3923,24.3435,59.8644,24.4203C60.2191,24.5005,60.5087,24.7182,60.6663,25.0229C60.8636,25.3394,60.8993,25.7346,60.7646,26.1094C60.5988,26.5176,60.2972,26.8749,59.9085,27.1235L60.31,27.8316L59.7886,28.1294L59.3994,27.443C58.9257,27.7175,58.399,27.883,57.8664,27.9247L57.3744,27.0569C57.6378,27.0741,57.9071,27.048,58.1704,26.9797C58.4501,26.9251,58.7239,26.8323,58.9829,26.7044L58.2801,25.4647C57.8047,25.5877,57.3167,25.6065,56.8549,25.5197C56.4913,25.4263,56.196,25.1971,56.0328,24.8814C55.8433,24.5561,55.8127,24.1572,55.9484,23.7789C56.088,23.373,56.3763,23.0149,56.7584,22.7726L56.4166,22.1699L56.938,21.8721L57.2727,22.4625C57.6615,22.2376,58.0888,22.0901,58.5254,22.0301L59.0042,22.8746C58.5548,22.8828,58.103,22.9906,57.6848,23.1892ZM56.9319,24.2961Q57.1278,24.6417,57.7863,24.5856L57.1695,23.4978Q56.6982,23.884,56.9319,24.2961ZM58.9077,25.3462L59.4981,26.3875L59.499,26.3891Q59.9965,26.0045,59.7628,25.5923Q59.573,25.2576,58.9077,25.3462ZM73.2212,66.5065C73.2212,68.2569,74.6555,69.6758,76.4249,69.6758C78.1943,69.6758,79.6286,68.2569,79.6286,66.5065C79.6286,64.7562,78.1943,63.3372,76.4249,63.3372C74.6555,63.3372,73.2212,64.7562,73.2212,66.5065ZM35.9465,91.8045C35.0734,91.8045,34.2038,91.7987,33.3378,91.7858C31.827,91.7636,30.6203,90.5359,30.6428,89.0402C30.6653,87.5457,31.9158,86.3297,33.4183,86.3742C49.6344,86.6059,65.7512,84.6175,67.6134,84.037C72.1953,82.4184,74.5295,79.3603,74.5295,74.9575C74.5295,73.463,75.754,72.2517,77.2648,72.2517C78.7755,72.2517,80,73.463,80,74.9575C80,81.5992,76.148,86.7686,69.4317,89.142C67.0041,89.9999,51.0955,91.8046,35.9465,91.8045ZM25.2731,92C23.5037,92,22.0693,90.5811,22.0693,88.8307C22.0693,87.0804,23.5037,85.6615,25.2731,85.6615C27.0424,85.6615,28.4768,87.0804,28.4768,88.8307C28.4768,90.5811,27.0424,92,25.2731,92Z>');
@@ -4019,7 +4025,7 @@ class pu {
   constructor(t) {
     h1(this, "_container");
     h1(this, "_chartApi", null);
-    if (E.isString(t.container)) {
+    if (I.isString(t.container)) {
       if (this._container = document.getElementById(t.container), !this._container)
         throw new Error("Container is null");
     } else
